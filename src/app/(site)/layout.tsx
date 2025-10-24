@@ -2,6 +2,7 @@
 import { Navbar } from "@/components/site/Navbar"
 import { useState } from "react";
 import "@/styles/globals.css";
+import { AnimatedBackground } from "@/components/site/AnimatedBackground";
 
 export default function MainLayout({
   children,
@@ -19,6 +20,7 @@ export default function MainLayout({
 
   return (
     <>
+      <AnimatedBackground />
       <Navbar currentPage={currentPage} onNavigate={handleNavigate} />
       {children}
     </>

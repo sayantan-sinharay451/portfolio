@@ -1,65 +1,150 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap");
+
 @import "tailwindcss";
 
-/* Design System Tokens */
 :root {
-    /* Colors - Dark Theme */
+    /* ===== NEUTRALS / BASE ===== */
     --color-bg: #0a0a0a;
     --color-surface: #121212;
     --color-surface-elevated: #1a1a1a;
-    --color-primary: #22c55e; /* Green */
-    --color-primary-hover: #4ade80; /* Lighter Green */
-    --color-secondary: #64748b;
-    --color-accent: #14b8a6; /* Teal */
-    --color-text: #f1f5f9;
+
+    /* ===== TEXT ===== */
+    --color-text-primary: #f1f5f9;
     --color-text-secondary: #94a3b8;
+    --color-text-tertiary: #64748b;
+
+    /* ===== BORDER ===== */
     --color-border: #27272a;
+    --color-border-hover: #3f3f46;
+
+    /* ===== BRAND / PRIMARY ===== */
+    --color-primary: #10b981; /* Emerald 500 */
+    --color-primary-light: #6ee7b7; /* Emerald 300 */
+    --color-primary-dark: #047857; /* Emerald 700 */
+    --color-primary-hover: #34d399; /* Emerald 400 */
+    --color-primary-container: #052e16;
+    --color-text-on-primary: #ffffff;
+
+    /* ===== SECONDARY & ACCENTS ===== */
+    --color-secondary: #64748b;
+    --color-secondary-light: #94a3b8;
+    --color-secondary-dark: #475569;
+    --color-accent-blue: #60a5fa;
+
+    /* ===== SEMANTIC ===== */
+    --color-success: #22c55e;
+    --color-warning: #f59e0b;
     --color-error: #ef4444;
-    --color-success: #10b981;
+    --color-info: #3b82f6;
 
-    /* Typography */
-    --font-family-heading: "Inter", system-ui, -apple-system, sans-serif;
-    --font-family-body: "Inter", system-ui, -apple-system, sans-serif;
+    /* ===== TYPOGRAPHY ===== */
+    --font-heading: "Outfit", "Space Grotesk", sans-serif;
+    --font-body: "Inter", sans-serif;
+    --font-contrast: "Space Grotesk", "Outfit", sans-serif;
+    --font-mono: "JetBrains Mono", monospace;
 
-    /* Spacing scale - 8px base grid */
-    --space-0: 0px;
-    --space-1: 0.5rem;
-    --space-2: 1rem;
-    --space-3: 1.5rem;
-    --space-4: 2rem;
-    --space-5: 2.5rem;
-    --space-6: 3rem;
-    --space-8: 4rem;
-    --space-10: 5rem;
-    --space-12: 6rem;
-    --space-15: 7.5rem;
-    --space-20: 10rem;
-
-    /* Radii - Minimalistic */
+    /* ===== RADII ===== */
     --radius-sm: 6px;
     --radius-md: 10px;
     --radius-lg: 12px;
+    --radius-xl: 20px;
     --radius-full: 9999px;
 
-    /* Shadows / elevation - Dark theme */
-    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.5);
+    /* ===== SHADOWS ===== */
+    --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.5);
     --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5),
         0 2px 4px -2px rgb(0 0 0 / 0.5);
     --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.6),
         0 4px 6px -4px rgb(0 0 0 / 0.6);
-    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.7),
-        0 8px 10px -6px rgb(0 0 0 / 0.7);
-    --shadow-glow: 0 0 20px rgb(34 197 94 / 0.15); /* Green Glow */
+    --shadow-glow: 0 0 30px rgb(16 185 129 / 0.15);
 
-    /* Transitions / timing */
+    /* ===== SPACING (8px grid) ===== */
+    --space-0: 0rem;
+    --space-1: 0.5rem;
+    --space-2: 1rem;
+    --space-3: 1.5rem;
+    --space-4: 2rem;
+    --space-6: 3rem;
+    --space-8: 4rem;
+    --space-10: 5rem;
+    --space-12: 6rem;
+    --space-20: 10rem;
+
+    /* ===== MOTION ===== */
+    --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
     --duration-fast: 150ms;
     --duration-medium: 300ms;
     --duration-slow: 500ms;
-    --ease-in: cubic-bezier(0.4, 0, 1, 1);
-    --ease-out: cubic-bezier(0, 0, 0.2, 1);
-    --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Base styles */
+/* ===============================================================
+   TAILWIND THEME MAPPING — via @theme
+   =============================================================== */
+@theme {
+    /* Base Colors */
+    --color-background: var(--color-bg);
+    --color-surface: var(--color-surface);
+    --color-surface-elevated: var(--color-surface-elevated);
+
+    /* Text */
+    --color-foreground: var(--color-text-primary);
+    --color-muted: var(--color-text-secondary);
+    --color-muted-foreground: var(--color-text-tertiary);
+
+    /* Brand */
+    --color-primary: var(--color-primary);
+    --color-primary-light: var(--color-primary-light);
+    --color-primary-dark: var(--color-primary-dark);
+    --color-primary-hover: var(--color-primary-hover);
+    --color-primary-container: var(--color-primary-container);
+    --color-primary-foreground: var(--color-text-on-primary);
+
+    /* Secondary & Accents */
+    --color-secondary: var(--color-secondary);
+    --color-secondary-light: var(--color-secondary-light);
+    --color-secondary-dark: var(--color-secondary-dark);
+    --color-accent: var(--color-accent-blue);
+
+    /* Borders */
+    --color-border: var(--color-border);
+    --color-border-hover: var(--color-border-hover);
+
+    /* Semantic */
+    --color-success: var(--color-success);
+    --color-warning: var(--color-warning);
+    --color-error: var(--color-error);
+    --color-info: var(--color-info);
+
+    /* Inputs, Rings, Surfaces */
+    --color-ring: var(--color-primary-light);
+    --color-input: var(--color-surface-elevated);
+    --color-card: var(--color-surface);
+    --color-card-foreground: var(--color-text-primary);
+    --color-popover: var(--color-surface-elevated);
+    --color-popover-foreground: var(--color-text-primary);
+
+    /* Fonts */
+    --font-heading: var(--font-heading);
+    --font-body: var(--font-body);
+    --font-mono: var(--font-mono);
+    --font-contrast: var(--font-contrast);
+
+    /* Radii & Shadows */
+    --radius-sm: var(--radius-sm);
+    --radius-md: var(--radius-md);
+    --radius-lg: var(--radius-lg);
+    --radius-xl: var(--radius-xl);
+    --radius-full: var(--radius-full);
+
+    --shadow-sm: var(--shadow-sm);
+    --shadow-md: var(--shadow-md);
+    --shadow-lg: var(--shadow-lg);
+    --shadow-glow: var(--shadow-glow);
+}
+
+/* ===============================================================
+   BASE STYLES
+   =============================================================== */
 * {
     margin: 0;
     padding: 0;
@@ -67,276 +152,113 @@
 }
 
 body {
-    font-family: var(--font-family-body);
-    background: var(--color-bg);
-    position: relative;
-    color: var(--color-text);
+    background-color: var(--color-bg);
+    color: var(--color-text-primary);
+    font-family: var(--font-body);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    overflow-x: hidden; /* Prevent scrollbars from the oversized pseudo-element */
 }
 
-/* New "Random" Wave-in-Gradient Animation */
-@keyframes flow-1 {
-  0%, 100% { transform: translate(10vw, -10vh); }
-  15% { transform: translate(30vw, 10vh); }
-  30% { transform: translate(15vw, 30vh); }
-  45% { transform: translate(-10vw, 25vh); }
-  60% { transform: translate(-25vw, 0vh); }
-  75% { transform: translate(-10vw, -20vh); }
+/* Headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 600;
 }
-
-@keyframes flow-2 {
-  0%, 100% { transform: translate(-15vw, 15vh); }
-  20% { transform: translate(10vw, -20vh); }
-  40% { transform: translate(30vw, 0vh); }
-  60% { transform: translate(10vw, 30vh); }
-  80% { transform: translate(-20vw, 10vh); }
-}
-
-@keyframes flow-3 {
-  0%, 100% { transform: translate(25vw, -25vh); }
-  25% { transform: translate(-15vw, 15vh); }
-  50% { transform: translate(15vw, 25vh); }
-  75% { transform: translate(5vw, -5vh); }
-}
-
-@keyframes flow-4 { /* The black blob */
-  0%, 100% { transform: translate(-20vw, -20vh); }
-  33% { transform: translate(20vw, 15vh); }
-  66% { transform: translate(-15vw, 25vh); }
-}
-
-body::before {
-    content: "";
-    position: fixed;
-    top: -50vh;
-    left: -50vw;
-    width: 200vw;
-    height: 200vh;
-    z-index: -1;
-    background-color: var(--color-bg);
-    background-image: radial-gradient(
-            circle at 20% 20%,
-            rgba(34, 197, 94, 0.2) 0%,
-            transparent 30%
-        ),
-        /* Primary Green */
-            radial-gradient(
-                circle at 80% 30%,
-                rgba(20, 184, 166, 0.15) 0%,
-                transparent 35%
-            ),
-        /* Accent Teal */
-            radial-gradient(
-                circle at 30% 80%,
-                rgba(16, 185, 129, 0.18) 0%,
-                transparent 30%
-            ),
-        /* Success Green */
-            radial-gradient(
-                circle at 70% 70%,
-                rgba(0, 0, 0, 0) 0%,
-                transparent 35%
-            ); /* Black */
-    background-repeat: no-repeat;
-    animation: flow-1 23s ease-in-out infinite, flow-2 29s ease-in-out infinite,
-        flow-3 31s ease-in-out infinite, flow-4 37s ease-in-out infinite;
-}
-
-/* Typography Scale - Minimalistic Hierarchy */
 h1 {
-    font-family: var(--font-family-heading);
     font-size: clamp(2.5rem, 6vw, 4rem);
     line-height: 1.1;
-    letter-spacing: -0.03em;
-    font-weight: 700;
 }
-
 h2 {
-    font-family: var(--font-family-heading);
     font-size: clamp(1.75rem, 4vw, 2.5rem);
     line-height: 1.2;
-    letter-spacing: -0.02em;
-    font-weight: 600;
 }
-
 h3 {
-    font-family: var(--font-family-heading);
     font-size: clamp(1.25rem, 3vw, 1.5rem);
     line-height: 1.4;
-    font-weight: 600;
 }
 
-h4 {
-    font-family: var(--font-family-heading);
-    font-size: 1.125rem;
-    line-height: 1.5;
-    font-weight: 600;
-}
-
-h5 {
-    font-family: var(--font-family-heading);
-    font-size: 1rem;
-    line-height: 1.5;
-    font-weight: 600;
-}
-
-h6 {
-    font-family: var(--font-family-heading);
-    font-size: 0.875rem;
-    line-height: 1.5;
-    font-weight: 600;
-}
-
-/* Body Text - 18px for readability */
+/* Paragraphs */
 p {
     font-size: 1.125rem;
     line-height: 1.7;
 }
 
-/* Caption Text - 14px */
-.caption {
-    font-size: 0.875rem;
-    line-height: 1.5;
-    font-weight: 500;
-}
-
+/* Links */
 a {
     color: inherit;
     text-decoration: none;
-    transition: color var(--duration-fast) var(--ease-out);
+    transition: color var(--duration-fast) var(--ease-in-out);
 }
-
 a:hover {
-    color: var(--color-primary);
+    color: var(--color-primary-hover);
 }
 
+/* Buttons */
 button {
-    font-family: var(--font-family-body);
+    font-family: var(--font-body);
     cursor: pointer;
 }
 
-/* Animations */
-@keyframes shake {
-    0%,
-    100% {
-        transform: translateX(0);
-    }
-    10%,
-    30%,
-    50%,
-    70%,
-    90% {
-        transform: translateX(-2px);
-    }
-    20%,
-    40%,
-    60%,
-    80% {
-        transform: translateX(2px);
-    }
-}
+/* ===============================================================
+   UTILITIES & ENHANCEMENTS
+   =============================================================== */
 
-.animate-shake {
-    animation: shake 0.3s ease-in-out;
-}
-
-/* Utility classes */
+/* Container & Section */
 .container {
     max-width: 1280px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: var(--space-4);
-    padding-right: var(--space-4);
+    margin: 0 auto;
+    padding-inline: var(--space-4);
 }
-
-/* Scale utilities for smooth hover effects */
-.hover\:scale-103:hover {
-    transform: scale(1.03);
-}
-
-.active\:scale-98:active {
-    transform: scale(0.98);
-}
-
-@media (max-width: 1024px) {
-    .container {
-        padding-left: var(--space-4);
-        padding-right: var(--space-4);
-    }
-}
-
-@media (max-width: 768px) {
-    .container {
-        padding-left: var(--space-3);
-        padding-right: var(--space-3);
-    }
-}
-
-/* Section spacing utilities */
 .section-spacing {
-    padding-top: var(--space-20);
-    padding-bottom: var(--space-20);
+    padding-block: var(--space-20);
 }
 
-@media (max-width: 768px) {
-    .section-spacing {
-        padding-top: var(--space-12);
-        padding-bottom: var(--space-12);
-    }
-}
-
-/* Scale utilities for smooth hover effects */
+/* Interactions */
 .hover\:scale-103:hover {
     transform: scale(1.03);
 }
-
 .active\:scale-98:active {
     transform: scale(0.98);
 }
 
-/* Line clamp utilities */
-.line-clamp-2 {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-
-.line-clamp-3 {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-
-/* Scrollbar styling for dark theme */
+/* Scrollbar */
 ::-webkit-scrollbar {
     width: 10px;
 }
-
 ::-webkit-scrollbar-track {
     background: var(--color-bg);
 }
-
 ::-webkit-scrollbar-thumb {
     background: var(--color-border);
     border-radius: 5px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--color-text-secondary);
+    background: var(--color-border-hover);
 }
 
-/* Selection styling */
+/* Selection */
 ::selection {
     background-color: var(--color-primary);
     color: white;
 }
-
 ::-moz-selection {
     background-color: var(--color-primary);
     color: white;
+}
+
+/* ===============================================================
+   BASE LAYER — Tailwind Integration
+   =============================================================== */
+@layer base {
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply bg-background text-foreground;
+    }
 }
