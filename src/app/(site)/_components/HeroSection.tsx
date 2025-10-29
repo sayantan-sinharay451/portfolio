@@ -1,12 +1,12 @@
 'use client'; // This directive is required for client components
 
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
-import SpotifyNowPlaying from "./SpotifyNowPlaying";
-import { Button } from "@/components/ui/button";
+import SpotifyNowPlaying from './SpotifyNowPlaying';
+import { Button } from '@/components/ui/button';
+import { ArrowUpRight } from 'lucide-react';
 
 const HeroSection = () => {
-
   const router = useRouter();
 
   const onNavigate = (section: string) => {
@@ -14,21 +14,21 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="container min-h-[90vh] flex items-center py-20 md:py-32">
+    <section className="container flex min-h-[100vh] items-start py-20 md:py-32">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.1 }}
-        className="max-w-5xl w-full"
+        className="w-full max-w-5xl"
       >
-        <div className="space-y-8">
+        <div className="space-y-1">
           {/* Role Badge */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <span className="font-sans inline-flex items-center !px-3 !py-1 bg-primary/40 border border-primary text-primary-foreground rounded-full text-sm backdrop-blur-sm">
+            <span className="bg-primary-container/20 border-primary text-primary-foreground inline-flex items-center rounded-full border px-3 py-1 font-sans text-sm backdrop-blur-sm">
               Full Stack Developer
             </span>
           </motion.div>
@@ -38,11 +38,11 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="font-heading leading-tight text-6xl md:text-7xl font-bold tracking-tight text-foreground"
+            className="font-heading text-foreground text-6xl leading-tight font-bold tracking-tight md:!text-7xl lg:!text-8xl"
           >
-            <div className="flex items-center gap-5 flex-wrap">
+            <div className="flex flex-wrap items-center gap-5">
               Sayantan
-              <span className="bg-[radial-gradient(at_top_right,transparent_20%,white_60%)] text-transparent bg-clip-text">
+              <span className="bg-[radial-gradient(at_top_right,transparent_20%,white_60%)] bg-clip-text text-transparent">
                 Sinharay
               </span>
             </div>
@@ -53,9 +53,11 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="font-body text-primary-light text-2xl md:text-3xl leading-tight"
+            className="font-body from-primary-light to-accent bg-gradient-to-r bg-clip-text text-2xl leading-tight text-transparent md:text-3xl"
           >
-            Building Digital Experiences<br />That Matter
+            Building Digital Experiences
+            <br />
+            That Matter
           </motion.h2>
 
           {/* Description */}
@@ -63,10 +65,10 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.5 }}
-            className="max-w-2xl font-contrast leading-relaxed text-lg"
+            className="font-contrast max-w-2xl text-lg leading-relaxed"
           >
-            I craft beautiful, performant web applications with modern technologies.
-            Passionate about creating intuitive user experiences and writing clean, maintainable code.
+            I craft beautiful, performant web applications with modern technologies. Passionate
+            about creating intuitive user experiences and writing clean, maintainable code.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -76,26 +78,30 @@ const HeroSection = () => {
             transition={{ duration: 0.5, delay: 0.6 }}
             className="flex flex-wrap gap-4 pt-4"
           >
-
-            <Button size="lg" onClick={() => onNavigate('feature_projects')} className="">
-              View Projects
-              {/* <ArrowRight size={20} /> */}
+            <Button
+              size="lg"
+              className="bg-primary-container text-primary-light border-primary-light hover:bg-primary hover:text-primary-container"
+            >
+              View Projects <ArrowUpRight className="ml-1 size-4" />
             </Button>
-            <Button variant="secondary" size="lg" onClick={() => onNavigate('contact')}>
+            <Button
+              variant="outline"
+              size="lg"
+              className="text-primary-foreground border-primary-light hover:text-primary-container hover:border-primary border-2"
+            >
               Get In Touch
             </Button>
-
           </motion.div>
 
           {/* Spotify Badge */}
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.7 }}
             className="pt-8"
           >
             <SpotifyNowPlaying />
-          </motion.div>
+          </motion.div> */}
         </div>
       </motion.div>
     </section>

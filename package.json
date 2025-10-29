@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
+    "@iconify/react": "^6.0.2",
     "@radix-ui/react-slot": "^1.2.3",
     "bcryptjs": "^3.0.2",
     "class-variance-authority": "^0.7.1",
@@ -25,6 +26,7 @@
     "react-dom": "19.1.0",
     "react-hook-form": "^7.65.0",
     "react-tsparticles": "^2.12.2",
+    "simple-icons": "^15.17.0",
     "tailwind-animate": "^0.2.10",
     "tailwind-merge": "^3.3.1",
     "tailwindcss-animate": "^1.0.7",
@@ -40,6 +42,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.5.5",
+    "prettier-plugin-tailwindcss": "^0.7.1",
     "tailwindcss": "^4.1.14",
     "tsx": "^4.20.6",
     "typescript": "^5"
