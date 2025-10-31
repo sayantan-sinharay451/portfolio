@@ -2,6 +2,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import ProjectCard from '@/components/site/ProjectCard';
+import { Button } from '@/components/ui/button';
+import { ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 const FeatureProjects = () => {
   // Mock project data
   const initialProjects = [
@@ -69,7 +72,7 @@ const FeatureProjects = () => {
     },
     {
       id: 6,
-      title: 'Code Snippet Manager',
+      title: 'Code Snippet Manager ddddeeeeeeeeeeeeeeeeee',
       description: 'Organize and share code snippets efficiently',
       longDescription:
         'Created a code snippet manager with syntax highlighting, tagging system, and sharing capabilities. Features include collections, search functionality, version history, and collaboration tools for teams.',
@@ -82,7 +85,7 @@ const FeatureProjects = () => {
   ];
 
   return (
-    <section className="section-spacing">
+    <section className="section-spacing bg-surface backdrop-blur-md">
       <div className="container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -91,8 +94,10 @@ const FeatureProjects = () => {
           transition={{ duration: 0.4 }}
           className="mb-12"
         >
-          <h2 className="text-primary-container font-heading text-4xl">Featured Projects</h2>
-          <p className="font-contrast max-w-2xl">A selection of my recent work</p>
+          <h2 className="text-primary font-heading text-4xl">Featured Projects</h2>
+          <p className="font-contrast text-muted-foreground max-w-2xl">
+            A selection of my recent work
+          </p>
         </motion.div>
 
         <div className="mb-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -102,10 +107,12 @@ const FeatureProjects = () => {
         </div>
 
         <div className="mt-12 text-center">
-          {/* <Button variant="secondary" onClick={() => onNavigate('projects')}>
-            View All Projects
-            <ArrowRight size={20} />
-          </Button> */}
+          <Button variant="secondary" className="border-none bg-transparent shadow-none">
+            <Link href={'/projects'} className="flex items-center gap-1">
+              View All Projects
+              <ArrowRight size={20} />
+            </Link>
+          </Button>
         </div>
       </div>
     </section>

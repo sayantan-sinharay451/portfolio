@@ -10,7 +10,7 @@ const HomePage: React.FC = () => {
       <WhatIDoSection />
       <FeatureProjects />
     </>
-  )
+  );
 };
 
 export default HomePage;

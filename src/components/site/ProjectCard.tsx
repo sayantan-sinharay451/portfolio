@@ -1,10 +1,12 @@
-import { motion } from 'motion/react';
-import { ExternalLink, Github } from 'lucide-react';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '../ui/card';
+import React, { MouseEventHandler, useRef, useState } from 'react';
+import { ExternalLink, GithubIcon } from 'lucide-react';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
+import { Badge } from '../ui/badge';
+
 interface ProjectCardProps {
   title: string;
   description: string;
-  image: string;
+  image?: string;
   technologies: string[];
   githubUrl?: string;
   liveUrl?: string;
@@ -18,69 +20,43 @@ const ProjectCard = ({
   technologies,
   githubUrl,
   liveUrl,
-  onClick,
 }: ProjectCardProps) => {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.3 }}
-      // whileHover={{ y: -8, scale: 1.015 }}
-      className=""
-      onClick={onClick}
-    >
-      <Card>
-        <CardHeader className="w-full">
-          <div className="" id="card-avatar">
+    <Card className="card-aesthetic group relative h-[300px] overflow-hidden border-none">
+      <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-b from-transparent to-black/60" />
+      <CardHeader>
+        <div className="relative mb-4 flex h-25 items-end justify-between">
+          <CardTitle className="">
+            <h3 className="group-hover:text-primary text-lg font-semibold">{title}</h3>
+          </CardTitle>
+
+          <div className="absolute top-0 right-0 flex gap-2">
             {githubUrl && (
-              <a
-                href={githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-full bg-white/90 p-2 transition-colors hover:bg-white"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <Github className="h-5 w-5 text-[var(--color-text)]" />
+              <a href={githubUrl} target="_blank" rel="noopener noreferrer">
+                <GithubIcon />
               </a>
             )}
             {liveUrl && (
-              <a
-                href={liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-full bg-white/90 p-2 transition-colors hover:bg-white"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <ExternalLink className="h-5 w-5 text-[var(--color-text)]" />
+              <a href={liveUrl} target="_blank" rel="noopener noreferrer">
+                <ExternalLink />
               </a>
             )}
           </div>
-        </CardHeader>
-        <CardContent>
-          <CardTitle>
-            <h3>{title}</h3>
-          </CardTitle>
-          <CardDescription>
-            <p className="text-muted-foreground line-clamp-2 text-base leading-relaxed">
-              {description}
-            </p>
-          </CardDescription>
-        </CardContent>
-        <CardFooter>
-          <div className="flex flex-wrap gap-2">
-            {technologies.map((tech, index) => (
-              <span
-                key={index}
-                className="rounded-[var(--radius-full)] border border-[var(--color-border)] bg-[var(--color-bg)] px-3 py-1.5 text-sm text-[var(--color-text-secondary)]"
-              >
-                {tech}
-              </span>
-            ))}
-          </div>
-        </CardFooter>
-      </Card>
-    </motion.div>
+        </div>
+
+        <div className="flex flex-wrap gap-2">
+          {technologies.map((tech) => (
+            <Badge variant={'outline'} className="bg-transparent" key={tech}>
+              {tech}
+            </Badge>
+          ))}
+        </div>
+      </CardHeader>
+
+      <CardContent className="py-4">
+        <CardDescription className="text-muted font-medium">{description}</CardDescription>
+      </CardContent>
+    </Card>
   );
 };
 

@@ -9,12 +9,15 @@ const blobConfig = {
     'rgba(16, 185, 129, 0.2)', // Primary Green
     'rgba(20, 184, 166, 0.15)', // Accent Teal
     'rgba(16, 185, 129, 0.18)', // Success Green
-    'rgba(0, 0, 0, 0)',       // Black for contrast
-    'rgba(0, 0, 0, 0)',       // Black for contrast
-    'rgba(34, 197, 94, 0.1)',   // Lighter Primary Green
-    'rgba(5, 163, 202, 0.3)', // Blue
-    "rgba(6, 88, 94, 0.2)",
-    "rgba(100, 224, 255, 0.3)"
+    'rgba(0, 0, 0, 0)', // Black for contrast
+    'rgba(0, 0, 0, 0)', // Black for contrast
+    'rgba(0, 0, 0, 0)', // Black for contrast
+    'rgba(0, 0, 0, 0)', // Black for contrast
+    'rgba(0, 0, 0, 0)', // Black for contrast
+    'rgba(34, 197, 94, 0.1)', // Lighter Primary Green
+    'rgba(5, 163, 202, 0.1)', // Blue
+    'rgba(6, 88, 94, 0.2)',
+    'rgba(100, 224, 255, 0.3)',
   ],
 };
 
@@ -48,8 +51,9 @@ const Blob = ({ index }: { index: number }) => {
   }, [random]);
 
   return (
-    <motion.div suppressHydrationWarning
-      className="absolute rounded-full mix-blend-hard-light filter blur-3xl"
+    <motion.div
+      suppressHydrationWarning
+      className="absolute rounded-full mix-blend-hard-light blur-3xl filter"
       style={{
         width: '50vmax', // Use vmax for size relative to largest viewport dimension
         height: '50vmax',
@@ -71,15 +75,15 @@ const Blob = ({ index }: { index: number }) => {
 // This is the main component that renders the background
 export function AnimatedBackground() {
   return (
-    <div className="fixed top-0 left-0 w-full h-full -z-10 overflow-hidden">
+    <div className="fixed top-0 left-0 -z-10 h-full w-full overflow-hidden">
       <AnimatePresence>
         {Array.from({
-          length: blobConfig.colors.length
+          length: blobConfig.colors.length,
         }).map((_, index) => (
           <Blob key={index} index={index} />
         ))}
       </AnimatePresence>
-      <div className="absolute top-0 left-0 w-full h-full bg-black/10 backdrop-blur-3xl" />
+      <div className="absolute top-0 left-0 h-full w-full bg-black/10 blur-3xl backdrop-blur-[300px]" />
     </div>
   );
 }

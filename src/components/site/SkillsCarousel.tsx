@@ -51,7 +51,7 @@ const SkillsCarousel = () => {
       key={`${icon.title}-${i}`}
       viewBox="0 0 24 24"
       dangerouslySetInnerHTML={{ __html: icon.svg }}
-      className="hover:fill-secondary-dark h-15 w-15 gap-10 overflow-visible fill-white opacity-70 transition-all duration-300 hover:scale-150 hover:opacity-100"
+      className="hover:fill-primary h-15 w-15 gap-10 overflow-visible fill-white opacity-70 transition-all duration-300 hover:scale-150 hover:opacity-100"
     />
   );
 
@@ -67,8 +67,8 @@ const SkillsCarousel = () => {
           </Marquee>
         </div>
       </div>
-      <div className="from-secondary pointer-events-none absolute inset-y-0 left-0 w-1/12 bg-gradient-to-r to-transparent"></div>
-      <div className="from-secondary pointer-events-none absolute inset-y-0 right-0 w-1/12 bg-gradient-to-l to-transparent"></div>
+      <div className="from-surface pointer-events-none absolute inset-y-0 left-0 w-1/12 bg-gradient-to-r to-transparent"></div>
+      <div className="from-surface pointer-events-none absolute inset-y-0 right-0 w-1/12 bg-gradient-to-l to-transparent"></div>
     </>
   );
 };
