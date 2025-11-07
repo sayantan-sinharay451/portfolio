@@ -1,9 +1,15 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
+interface icon {
+  original: string;
+  oneColor?: string;
+}
+
 export interface ISkill extends Document {
   name: string;
   proficiency: 'Beginner' | 'Intermediate' | 'Advanced' | 'Expert';
   category?: string;
+  icon?: icon;
   yearsOfExperience?: number;
   endorsements?: number;
   createdAt?: Date;
@@ -19,6 +25,10 @@ const SkillSchema: Schema = new Schema(
       required: true,
     },
     category: { type: String },
+    icon: {
+      original: { type: String, required: true },
+      oneColor: { type: String },
+    },
     yearsOfExperience: { type: Number, min: 0 },
     endorsements: { type: Number, default: 0, min: 0 },
   },

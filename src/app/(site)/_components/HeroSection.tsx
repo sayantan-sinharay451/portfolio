@@ -40,12 +40,7 @@ const HeroSection = () => {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="font-heading text-foreground text-6xl leading-tight font-bold tracking-tight md:!text-7xl lg:!text-8xl"
           >
-            <div className="flex flex-wrap items-center gap-5">
-              Sayantan
-              <span className="bg-[radial-gradient(at_top_right,transparent_20%,white_60%)] bg-clip-text text-transparent">
-                Sinharay
-              </span>
-            </div>
+            <div className="text-transparent-gradient">Sayantan Sinharay</div>
           </motion.h1>
 
           {/* Tagline */}

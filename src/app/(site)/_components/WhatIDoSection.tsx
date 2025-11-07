@@ -34,7 +34,7 @@ const WhatIDoSection = () => {
           className="mb-12"
         >
           <h2 className="text-primary font-heading text-4xl">What I Do</h2>
-          <p className="font-contrast text-muted max-w-2xl">
+          <p className="font-contrast text-foreground max-w-2xl font-medium">
             My approach to development and design
           </p>
         </motion.div>

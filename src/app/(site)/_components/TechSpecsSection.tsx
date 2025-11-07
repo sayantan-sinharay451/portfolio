@@ -12,9 +12,7 @@ const TechSpecsSection = () => {
           transition={{ duration: 0.4 }}
         >
           <h2 className="font-heading text-primary">Tech Stack</h2>
-          <p className="font-contrast text-muted-foreground max-w-2xl">
-            Technologies I work with to bring ideas to life
-          </p>
+          <p className="font-contrast max-w-2xl">Technologies I work with to bring ideas to life</p>
         </motion.div>
         <SkillsCarousel />
       </div>

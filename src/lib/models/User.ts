@@ -17,6 +17,12 @@ export interface IUser extends Document {
   updatedAt?: Date;
 }
 
+const SocialLinksSchema: Schema = new Schema({
+  name: { type: String, required: true },
+  url: { type: String, required: true },
+}, { _id: false });
+
+
 const UserSchema: Schema = new Schema(
   {
     firstName: { type: String, required: true },
@@ -25,12 +31,7 @@ const UserSchema: Schema = new Schema(
     passwordHash: { type: String, required: true },
     aboutMe: { type: String },
     image: { type: String },
-    socialLinks: {
-      github: { type: String },
-      linkedin: { type: String },
-      twitter: { type: String },
-      personalWebsite: { type: String },
-    },
+    socialLinks: { type: [SocialLinksSchema] },
   },
   { timestamps: true }
 );

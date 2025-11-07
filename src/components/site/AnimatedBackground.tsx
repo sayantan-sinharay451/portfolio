@@ -53,7 +53,7 @@ const Blob = ({ index }: { index: number }) => {
   return (
     <motion.div
       suppressHydrationWarning
-      className="absolute rounded-full mix-blend-hard-light blur-3xl filter"
+      className="absolute rounded-full mix-blend-multiply blur-3xl filter"
       style={{
         width: '50vmax', // Use vmax for size relative to largest viewport dimension
         height: '50vmax',
@@ -83,7 +83,7 @@ export function AnimatedBackground() {
           <Blob key={index} index={index} />
         ))}
       </AnimatePresence>
-      <div className="absolute top-0 left-0 h-full w-full bg-black/10 blur-3xl backdrop-blur-[300px]" />
+      <div className="absolute top-0 left-0 h-full w-full bg-black/5 blur-3xl backdrop-blur-[200px]" />
     </div>
   );
 }

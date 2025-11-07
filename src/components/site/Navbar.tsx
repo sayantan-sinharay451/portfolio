@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import Link from 'next/link';
 
 const navItems = [
-  { label: 'Home', value: 'home' },
+  { label: 'Home', value: '' },
   { label: 'About', value: 'about' },
   { label: 'Projects', value: 'projects' },
   { label: 'Contact', value: 'contact' },
@@ -40,7 +40,7 @@ export function Navbar({ currentPage, onNavigate }: NavbarProps) {
         <div className="hidden items-center gap-8 md:flex">
           {navItems.map((item) => (
             <Link
-              href={`/${item.value === 'home' ? '' : item.value}`}
+              href={`/${item.value}`}
               key={item.value}
               onClick={() => onNavigate(item.value)}
               className={`relative py-2 font-medium transition-all duration-200 ${

@@ -85,7 +85,7 @@ const FeatureProjects = () => {
   ];
 
   return (
-    <section className="section-spacing bg-surface backdrop-blur-md">
+    <section className="section-spacing bg-surface">
       <div className="container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

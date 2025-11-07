@@ -1,11 +1,17 @@
 'use client';
 import { Navbar } from '@/components/site/Navbar';
-import { useState } from 'react';
-import '@/styles/globals.css';
+import { useEffect, useState } from 'react';
 import { AnimatedBackground } from '@/components/site/AnimatedBackground';
+import { usePathname } from 'next/navigation';
 
 export default function MainLayout({ children }: { children: React.ReactNode }) {
-  const [currentPage, setCurrentPage] = useState('home');
+  const [currentPage, setCurrentPage] = useState('');
+  const pathName = usePathname();
+
+  useEffect(() => {
+    const path = pathName.split('/')[1] || '';
+    setCurrentPage(path);
+  }, [pathName]);
 
   const handleNavigate = (page: string) => {
     setCurrentPage(page);

@@ -261,7 +261,7 @@ button {
    =============================================================== */
 @layer base {
   * {
-    @apply border-border;
+    @apply border-border outline-ring/50;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -300,28 +300,13 @@ button {
       transform: rotate(1.5deg);
     }
   }
-}
-
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-  @keyframes tilt {
-    0%,
-    100% {
-      transform: rotate(0deg);
+  --animate-gradient: gradient 8s linear infinite
+;
+  @keyframes gradient {
+  to {
+    background-position: var(--bg-size, 300%) 0;
     }
-    50% {
-      transform: rotate(1.5deg);
-    }
-  }
-  .animate-tilt {
-    animation: tilt 12s infinite linear;
-  }
-}
+  }}
 
 @layer utilities {
   .card-aesthetic:hover {
@@ -342,5 +327,8 @@ button {
     transition:
       transform 220ms var(--ease-in-out),
       box-shadow 220ms var(--ease-in-out);
+  }
+  .text-transparent-gradient {
+    @apply w-fit bg-[radial-gradient(at_top_right,transparent_5%,white_60%)] bg-clip-text text-transparent;
   }
 }

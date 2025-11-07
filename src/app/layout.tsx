@@ -1,9 +1,9 @@
-import type { Metadata } from "next";
-
+import type { Metadata } from 'next';
+import '@/styles/globals.css';
 
 export const metadata: Metadata = {
-  title: "Devfolio",
-  description: "A portfolio website for developers to showcase their projects and skills.",
+  title: 'Devfolio',
+  description: 'A portfolio website for developers to showcase their projects and skills.',
 };
 
 export default function RootLayout({
@@ -12,10 +12,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" >
-      <body suppressHydrationWarning>
-        {children}
-      </body>
-    </html >
+    <html lang="en">
+      <body suppressHydrationWarning>{children}</body>
+    </html>
   );
 }
