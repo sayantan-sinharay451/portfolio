@@ -16,10 +16,12 @@ const AboutPage = () => {
   return (
     <>
       <PageHeading title={data.title} subTitle={data.subTitle} />
-      <AboutMeSection />
-      <TechSpecSection />
-      <ExperienceSection />
-      <EducationSection />
+      <div className="container mx-auto flex flex-col gap-30">
+        <AboutMeSection />
+        <TechSpecSection />
+        <ExperienceSection />
+        <EducationSection />
+      </div>
     </>
   );
 };

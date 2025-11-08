@@ -7,19 +7,18 @@ interface SectionHeadingProps {
   id?: string;
 }
 
-const SectionHeading = () => {
+const SectionHeading = ({ heading, subheading, id }: SectionHeadingProps) => {
   return (
     <motion.div
+      id={id}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 1 }}
       className="mb-12"
     >
-      <h2 className="text-primary font-heading text-4xl">What I Do</h2>
-      <p className="font-contrast text-foreground max-w-2xl font-medium">
-        My approach to development and design
-      </p>
+      <h2 className="text-primary font-heading text-4xl">{heading}</h2>
+      <p className="font-contrast text-foreground max-w-2xl font-medium">{subheading}</p>
     </motion.div>
   );
 };
