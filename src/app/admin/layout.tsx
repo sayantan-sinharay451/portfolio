@@ -1,27 +1,26 @@
 'use client';
 import React from 'react';
-import Sidenavbar from './_components/Sidenavbar';
-import Bottombar from './_components/Bottombar';
-import { Menu } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import SideNavbar from '../../components/admin/SideNavbar';
+import { motion } from 'framer-motion';
+import { usePathname } from 'next/navigation';
 
 const AdminLayout = ({ children }: { children: React.ReactNode }) => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+  const pathName = usePathname();
 
   return (
-    <div className='flex h-screen bg-surface'>
-      <div className={`lg:block ${isMobileMenuOpen ? 'block' : 'hidden'}`}>
-        <Sidenavbar />
+    <div className="bg-surface fixed flex h-screen w-full">
+      <SideNavbar />
+      <div className="flex h-screen w-full flex-col">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="container flex-1 overflow-y-auto"
+          key={pathName}
+        >
+          {children}
+        </motion.div>
       </div>
-      <main className='flex-1 overflow-y-auto pb-16 lg:pb-0'>
-        <div className='p-4 lg:hidden'>
-          <Button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} variant='ghost' size='icon'>
-            <Menu />
-          </Button>
-        </div>
-        {children}
-      </main>
-      <Bottombar />
     </div>
   );
 };

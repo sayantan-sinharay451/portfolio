@@ -1,20 +1,11 @@
 'use client';
 import React from 'react';
-import {
-  Award,
-  Folder,
-  LayoutDashboard,
-  User,
-  Settings,
-  Home,
-  Menu,
-  ArrowLeft,
-} from 'lucide-react';
+import { Award, Folder, LayoutDashboard, Settings, Menu, ArrowLeft } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 
-const Sidenavbar = () => {
+const SideNavbar = () => {
   const pathname = usePathname();
   const [isCollapsed, setIsCollapsed] = React.useState(false);
 
@@ -27,14 +18,14 @@ const Sidenavbar = () => {
     {
       icon: Folder,
       label: 'Projects',
-      href: '/admin/Project',
+      href: '/admin/projects',
     },
-    { icon: Award, label: 'Skills', href: '/admin/Skills' },
+    { icon: Award, label: 'Skills', href: '/admin/skills' },
 
     {
       icon: Settings,
       label: 'Settings',
-      href: '/admin/Settings',
+      href: '/admin/settings',
     },
   ];
 
@@ -47,11 +38,11 @@ const Sidenavbar = () => {
         width: isCollapsed ? '80px' : '280px',
       }}
       transition={{ duration: 0.3 }}
-      className='absolute z-50 lg:relative min-h-screen flex-col border-r border-border bg-surface-elevated flex'
+      className="border-border bg-surface-elevated relative z-50 flex min-h-screen flex-col border-r"
     >
       {/* Sidebar Header */}
-      <div className='flex items-center justify-between border-b border-border p-6'>
-        {!isCollapsed && <h4 className='mb-1'>Admin Dashboard</h4>}
+      <div className="border-border flex items-center justify-between border-b p-6">
+        {!isCollapsed && <h4 className="mb-1">Admin Dashboard</h4>}
         <motion.button
           onClick={() => setIsCollapsed(!isCollapsed)}
           whileHover={{ scale: 1.1 }}
@@ -62,7 +53,7 @@ const Sidenavbar = () => {
       </div>
 
       {/* Navigation */}
-      <nav className='flex-1 space-y-2 p-4'>
+      <nav className="flex-1 space-y-2 p-4">
         {menuItems.map((item) => {
           const Icon = item.icon;
           const isActive = pathname === item.href;
@@ -73,12 +64,12 @@ const Sidenavbar = () => {
                 whileTap={{ scale: 0.98 }}
                 className={`flex w-full items-center gap-3 rounded-md px-4 py-3 transition-all duration-200 ${
                   isActive
-                    ? 'bg-primary/10 text-primary shadow-inner shadow-primary/50'
+                    ? 'bg-primary/10 text-primary shadow-primary/50 shadow-inner'
                     : 'text-text-secondary hover:bg-surface hover:text-text-primary'
                 }`}
               >
                 <Icon size={20} />
-                {!isCollapsed && <span className='text-base'>{item.label}</span>}
+                {!isCollapsed && <span className="text-base">{item.label}</span>}
               </motion.button>
             </Link>
           );
@@ -86,12 +77,12 @@ const Sidenavbar = () => {
       </nav>
 
       {/* Sidebar Footer */}
-      <div className='border-t border-border p-4'>
-        <Link href='/'>
+      <div className="border-border border-t p-4">
+        <Link href="/">
           <motion.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className='flex w-full items-center justify-center gap-3 rounded-md px-4 py-3 text-text-secondary transition-all duration-200 hover:bg-surface hover:text-text-primary'
+            className="text-text-secondary hover:bg-surface hover:text-text-primary flex w-full items-center justify-center gap-3 rounded-md px-4 py-3 transition-all duration-200"
           >
             <ArrowLeft size={20} />
             {!isCollapsed && <span>Back to Home</span>}
@@ -102,4 +93,4 @@ const Sidenavbar = () => {
   );
 };
 
-export default Sidenavbar;
+export default SideNavbar;

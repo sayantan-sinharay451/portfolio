@@ -10,6 +10,7 @@ const TechSpecsSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.4 }}
+          className="relative z-10"
         >
           <h2 className="font-heading text-primary">Tech Stack</h2>
           <p className="font-contrast max-w-2xl">Technologies I work with to bring ideas to life</p>

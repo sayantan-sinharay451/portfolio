@@ -1,18 +1,18 @@
-import * as React from "react";
-import { Slot } from "@radix-ui/react-slot";
-import { cva, type VariantProps } from "class-variance-authority";
+import * as React from 'react';
+import { Slot } from '@radix-ui/react-slot';
+import { cva, type VariantProps } from 'class-variance-authority';
 
-import { cn } from "@/lib/utils";
+import { cn } from '@/lib/utils';
 
 const buttonVariants = cva(
   // 🔹 Shared Base Styles
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50 active:scale-[0.98] [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50 active:scale-[0.98] [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
   {
     variants: {
       variant: {
         default: `
           bg-primary text-primary-foreground shadow-sm 
-          hover:bg-primary-hover hover:shadow-md 
+          hover:bg-primary/80 hover:shadow-md 
           focus-visible:ring-primary
         `,
         secondary: `
@@ -37,46 +37,37 @@ const buttonVariants = cva(
           bg-error text-white shadow-sm 
           hover:bg-error/80 focus-visible:ring-error
         `,
-        gradient: `
-    bg-gradient-to-r from-primary to-primary-light text-primary-foreground
-    shadow-md hover:from-primary-light hover:to-primary
-    focus-visible:ring-primary
-  `
       },
       // 📏 Button Sizes
       size: {
-        default: "h-10 px-5 text-sm",
-        sm: "h-8 px-3 text-xs rounded-md",
-        lg: "h-11 px-8 text-base rounded-md",
-        icon: "h-10 w-10 p-0 flex items-center justify-center",
+        default: 'h-10 px-5 text-sm',
+        sm: 'h-8 px-3 text-xs rounded-md',
+        lg: 'h-11 px-8 text-base rounded-md',
+        icon: 'h-10 w-10 p-0 flex items-center justify-center',
       },
     },
     defaultVariants: {
-      variant: "default",
-      size: "default",
+      variant: 'default',
+      size: 'default',
     },
   }
 );
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-  VariantProps<typeof buttonVariants> {
+    VariantProps<typeof buttonVariants> {
   asChild?: boolean;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, asChild = false, ...props }, ref) => {
-    const Comp = asChild ? Slot : "button";
+    const Comp = asChild ? Slot : 'button';
     return (
-      <Comp
-        ref={ref}
-        className={cn(buttonVariants({ variant, size, className }))}
-        {...props}
-      />
+      <Comp ref={ref} className={cn(buttonVariants({ variant, size, className }))} {...props} />
     );
   }
 );
 
-Button.displayName = "Button";
+Button.displayName = 'Button';
 
 export { Button, buttonVariants };

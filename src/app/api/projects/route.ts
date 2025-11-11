@@ -1,6 +1,8 @@
 import connectDB from "@/lib/mongodb";
 import Project from "@/lib/models/Project";
 import { NextResponse } from "next/server";
+import { projectSchema } from "@/lib/validators/projectSchema";
+
 
 export async function GET() {
   await connectDB();
@@ -11,14 +13,30 @@ export async function GET() {
 export async function POST(req: Request) {
   await connectDB();
   const data = await req.json();
-  const project = await Project.create(data);
+
+  debugger;
+
+  const validation = projectSchema.safeParse(data);
+
+  if (!validation.success) {
+    return NextResponse.json(validation.error.errors, { status: 400 });
+  }
+
+  const project = await Project.create(validation.data);
   return NextResponse.json(project, { status: 201 });
 }
 
 export async function PUT(req: Request) {
   await connectDB();
-  const { id, ...updates } = await req.json();
-  const project = await Project.findByIdAndUpdate(id, updates, { new: true });
+  const data = await req.json();
+  const validation = projectSchema.safeParse(data);
+
+  if (!validation.success) {
+    return NextResponse.json(validation.error.errors, { status: 400 });
+  }
+
+  const { _id, ...updates } = validation.data;
+  const project = await Project.findByIdAndUpdate(_id, updates, { new: true });
   return NextResponse.json(project);
 }
 

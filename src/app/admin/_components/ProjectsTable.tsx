@@ -29,38 +29,32 @@ const projects = [
 
 const ProjectsTable = () => {
   return (
-    <div className='p-6'>
-      <div className='flex items-center justify-between'>
-        <div>
-          <h3 className='text-xl font-bold'>All Projects</h3>
-          <p className='text-text-secondary'>{projects.length} total projects</p>
-        </div>
-        <Button>
-          <PlusCircle size={20} className='mr-2' />
+    <div className="p-6">
+      <div className="flex items-center justify-between">
+        <Button variant="default">
+          <PlusCircle size={20} className="mr-2" />
           Add New Project
         </Button>
       </div>
 
       {/* Desktop Table */}
-      <div className='mt-6 hidden overflow-x-auto lg:block'>
-        <table className='w-full table-auto'>
-          <thead className='text-left text-text-secondary'>
+      <div className="mt-6 hidden overflow-x-auto lg:block">
+        <table className="w-full table-auto">
+          <thead className="text-text-secondary text-left">
             <tr>
-              <th className='p-4'>Title</th>
-              <th className='p-4'>Description</th>
-              <th className='p-4'>Technologies</th>
-              <th className='p-4'>Category</th>
-              <th className='p-4'>Actions</th>
+              <th className="p-4">Title</th>
+              <th className="p-4">Description</th>
+              <th className="p-4">Technologies</th>
+              <th className="p-4">Category</th>
+              <th className="p-4">Actions</th>
             </tr>
           </thead>
           <tbody>
             {projects.length > 0 ? (
-              projects.map((project, index) => (
-                <ProjectRow key={index} project={project} />
-              ))
+              projects.map((project, index) => <ProjectRow key={index} project={project} />)
             ) : (
               <tr>
-                <td colSpan={5} className='p-4 text-center text-text-secondary'>
+                <td colSpan={5} className="text-text-secondary p-4 text-center">
                   No projects found.
                 </td>
               </tr>
@@ -70,7 +64,7 @@ const ProjectsTable = () => {
       </div>
 
       {/* Mobile Cards */}
-      <div className='mt-6 grid gap-4 lg:hidden'>
+      <div className="mt-6 grid gap-4 lg:hidden">
         {projects.length > 0 ? (
           projects.map((project, index) => (
             <Card key={index}>
@@ -78,22 +72,22 @@ const ProjectsTable = () => {
                 <CardTitle>{project.title}</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className='text-text-secondary'>{project.description}</p>
-                <div className='mt-4 flex flex-wrap gap-2'>
+                <p className="text-text-secondary">{project.description}</p>
+                <div className="mt-4 flex flex-wrap gap-2">
                   {project.technologies.map((tech, i) => (
-                    <Badge key={i} variant='secondary'>
+                    <Badge key={i} variant="secondary">
                       {tech}
                     </Badge>
                   ))}
                 </div>
-                <div className='mt-4'>
-                  <Badge variant='outline'>{project.category}</Badge>
+                <div className="mt-4">
+                  <Badge variant="outline">{project.category}</Badge>
                 </div>
               </CardContent>
             </Card>
           ))
         ) : (
-          <p className='text-center text-text-secondary'>No projects found.</p>
+          <p className="text-text-secondary text-center">No projects found.</p>
         )}
       </div>
     </div>
