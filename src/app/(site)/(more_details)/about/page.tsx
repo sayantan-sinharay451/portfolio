@@ -16,7 +16,7 @@ const AboutPage = () => {
   return (
     <>
       <PageHeading title={data.title} subTitle={data.subTitle} />
-      <div className="container mx-auto flex flex-col gap-30">
+      <div className="section-spacing mx-auto flex flex-col gap-30">
         <AboutMeSection />
         <TechSpecSection />
         <ExperienceSection />

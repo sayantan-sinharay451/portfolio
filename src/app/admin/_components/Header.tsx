@@ -10,14 +10,11 @@ interface HeaderProps {
 
 const Header = ({ title, subtitle }: HeaderProps) => {
   return (
-    <header className='flex items-center justify-between border-b border-border p-6'>
+    <header className="border-border flex items-center justify-between border-b p-6">
       <div>
-        <h2 className='text-2xl font-bold'>{title}</h2>
-        <p className='text-text-secondary'>{subtitle}</p>
+        <h2 className="text-2xl font-bold">{title}</h2>
+        <p className="text-text-secondary">{subtitle}</p>
       </div>
-      <Button variant='outline' size='icon'>
-        <LogOut size={20} />
-      </Button>
     </header>
   );
 };

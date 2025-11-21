@@ -1,7 +1,7 @@
 import React from 'react';
-import { ISkill } from '@/lib/models/Skills';
+import { ISkill, ProficiencyLevel } from '@/lib/models/Skills';
 import { Progress } from '@/components/ui/progress';
-import Image from 'next/image';
+import SkillIcon from '@/components/site/SkillIcon';
 
 interface SkillCardProps {
   skill: ISkill;
@@ -22,16 +22,14 @@ const proficiencyToValue = (proficiency: 'Beginner' | 'Intermediate' | 'Advanced
 
 const SkillCard: React.FC<SkillCardProps> = ({ skill }) => {
   return (
-    <div className="flex items-center gap-4 p-4 border rounded-lg">
-      {skill.icon && (
-        <Image src={skill.icon.original} alt={skill.name} width={40} height={40} />
-      )}
+    <div className="border-primary-light flex items-center gap-4 rounded-lg border-1 p-4">
+      <SkillIcon name={skill.name} size={48} />
       <div className="w-full">
-        <div className="flex justify-between items-center mb-1">
+        <div className="mb-1 flex items-center justify-between">
           <h4 className="font-semibold">{skill.name}</h4>
-          <span className="text-sm text-gray-500">{skill.proficiency}</span>
+          <span className="text-muted text-sm">{skill.proficiency}</span>
         </div>
-        <Progress value={proficiencyToValue(skill.proficiency)} />
+        <Progress value={proficiencyToValue(skill.proficiency as ProficiencyLevel)} />
       </div>
     </div>
   );

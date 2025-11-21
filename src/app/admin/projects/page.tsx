@@ -1,60 +1,100 @@
-import React from 'react';
+'use client';
+
+import React, { useEffect, useState } from 'react';
 import PageHeading from '../_components/PageHeading';
-import { motion } from 'framer-motion';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import ProjectRow from './_components/ProjectRow';
-import { IProject } from '@/lib/models/Project';
 import AdminModal from '../_components/AdminModal';
-import ProjectsTable from '../_components/ProjectsTable';
+import ProjectForm from './_components/ProjectFrom';
+import { Button } from '@/components/ui/button';
+import { IProject } from '@/lib/models/Project';
 
-const ProjectsPage = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/projects`, {
-    cache: 'no-store', // disables caching for fresh data each request
-  });
+const ProjectsPage = () => {
+  const [projects, setProjects] = useState<IProject[]>([]);
+  const [activeProjects, setActiveProjects] = useState<IProject[]>([]);
+  const [archivedProjects, setArchivedProjects] = useState<IProject[]>([]);
 
-  if (!res.ok) {
-    throw new Error('Failed to fetch projects');
-  }
+  // TODO: replace mock with API fetch
+  useEffect(() => {
+    const mock = [
+      {
+        _id: '1',
+        title: 'Project Alpha',
+        description: 'A web application for managing tasks.',
+        technologies: ['React'],
+        isArchived: false,
+      },
+      {
+        _id: '2',
+        title: 'Project Beta',
+        description: 'A mobile app for fitness.',
+        technologies: ['React Native'],
+        isArchived: true,
+      },
+      {
+        _id: '3',
+        title: 'Project Gamma',
+        description: 'E-commerce platform.',
+        technologies: ['Next.js'],
+        isArchived: false,
+      },
+    ];
 
-  const projects = [
-    {
-      title: 'Project Alpha',
-      description: 'A web application for managing tasks and projects.',
-      technologies: ['React', 'Node.js', 'MongoDB'],
-      category: 'Web App',
-    },
-    {
-      title: 'Project Beta',
-      description: 'A mobile app for tracking fitness goals. ',
-      technologies: ['React Native', 'Firebase'],
-      category: 'Mobile App',
-    },
-    {
-      title: 'Project Gamma',
-      description:
-        'An e-commerce platform for selling digital products. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit at molestiae illo quaerat fugit laudantium quisquam quidem sit maxime blanditiis. Rerum, magni? Nostrum suscipit nemo itaque excepturi cupiditate, earum sed omnis magni ratione minus illum, provident voluptatibus et possimus dolore. Consequatur, reprehenderit esse dolore corrupti facilis optio. Minus laborum tempore iusto perspiciatis commodi doloremque voluptas, explicabo nam dolore illum ad dolores fugit soluta animi. Quam unde alias nobis quia quisquam provident dolorem nesciunt ab, repellat corrupti eum recusandae iusto excepturi nulla magni distinctio reprehenderit officia quaerat culpa in fuga repellendus impedit vel atque! Culpa in exercitationem repellat praesentium. Dicta omnis dolorum sint incidunt blanditiis ipsam, laboriosam minus explicabo tenetur ipsa, ab iure aut quis at quibusdam assumenda aliquam laudantium debitis. Nisi enim esse aperiam voluptate cumque, et minus modi molestias magni repellendus harum tempora odio accusantium voluptatem quam nemo provident aliquid officiis? Doloribus cum deleniti unde inventore repellat nesciunt omnis nostrum animi consectetur molestias, esse explicabo, facere voluptates quam quisquam totam eveniet nihil. Beatae odit delectus eaque, odio minus vel aliquam tempora perferendis ipsum quas sequi ducimus voluptates asperiores perspiciatis repudiandae, tenetur accusamus? Voluptatum sapiente similique doloremque non iusto numquam excepturi dolores veniam laudantium totam modi nesciunt, optio quas magnam.',
-      technologies: ['Next.js', 'Stripe', 'PostgreSQL'],
-      category: 'E-commerce',
-    },
-  ];
+    setProjects(mock);
+    setActiveProjects(mock.filter((p) => !p.isArchived));
+    setArchivedProjects(mock.filter((p) => p.isArchived));
+  }, []);
 
   return (
-    <div>
-      <PageHeading title="Projects" subtitle="Manage your projects and case studies" />
-      <div className="flex-1">
+    <>
+      <PageHeading title="Projects" subtitle="Manage your projects and portfolio work" />
+
+      <div className="item-center flex justify-between">
         <div>
           <h3 className="text-xl font-bold">All Projects</h3>
-          <p className="text-text-secondary">You have total of {projects.length} projects</p>
+          <p className="text-muted-foreground">Total projects: {projects.length}</p>
         </div>
-        {projects.map((project: IProject) => {
-          return <ProjectRow key={project._id as string} project={project} />;
-        })}
+        <AdminModal
+          triggerComponent={<Button>Add New Project</Button>}
+          title="Add Project"
+          description="Create a new project"
+        >
+          <ProjectForm onSubmit={(values) => console.log(values)} />
+        </AdminModal>
       </div>
-      <ProjectsTable />
 
-      <AdminModal isOpenExternal={true} title="helo" description="hello">
-        hello
-      </AdminModal>
-    </div>
+      {/* Tabs */}
+      <Tabs defaultValue="active" className="w-full">
+        <TabsList className="item-start bg-primary mb-4">
+          <TabsTrigger value="active">Active</TabsTrigger>
+          <TabsTrigger value="archived">Archived</TabsTrigger>
+        </TabsList>
+
+        {/* Active Projects */}
+        <TabsContent value="active">
+          <div className="grid gap-4">
+            {activeProjects.map((project) => (
+              <ProjectRow key={project._id} project={project} />
+            ))}
+          </div>
+          {activeProjects.length === 0 && (
+            <p className="text-muted-foreground mt-4">No active projects yet.</p>
+          )}
+        </TabsContent>
+
+        {/* Archived */}
+        <TabsContent value="archived">
+          <div className="grid gap-4">
+            {archivedProjects.map((project) => (
+              <ProjectRow key={project._id} project={project} />
+            ))}
+          </div>
+          {archivedProjects.length === 0 && (
+            <p className="text-muted-foreground mt-4">No archived projects.</p>
+          )}
+        </TabsContent>
+      </Tabs>
+    </>
   );
 };
 

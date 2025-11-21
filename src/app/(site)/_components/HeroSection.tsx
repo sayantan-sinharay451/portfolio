@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import SpotifyNowPlaying from './SpotifyNowPlaying';
 import { Button } from '@/components/ui/button';
 import { ArrowUpRight } from 'lucide-react';
+import { AnimatedGradientText } from '@/components/ui/animated-gradient-text';
 
 const HeroSection = () => {
   const router = useRouter();
@@ -48,11 +49,13 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="font-body from-primary-light to-accent bg-gradient-to-r bg-clip-text text-2xl leading-tight text-transparent md:text-3xl"
+            className="font-body !from-primary-light !to-accent !bg-gradient-to-r bg-clip-text text-2xl leading-tight text-transparent md:text-3xl"
           >
-            Building Digital Experiences
-            <br />
-            That Matter
+            <AnimatedGradientText speed={0.2} colorFrom="#05a3ca">
+              Building Digital Experiences
+              <br />
+              That Matter
+            </AnimatedGradientText>
           </motion.h2>
 
           {/* Description */}
@@ -82,7 +85,7 @@ const HeroSection = () => {
             <Button
               variant="outline"
               size="lg"
-              className="text-primary-foreground border-primary-light hover:text-primary-container hover:border-primary border-2"
+              className="text-primary-foreground border-primary-light hover:text-primary-light hover:border-primary-container border-2"
             >
               Get In Touch
             </Button>

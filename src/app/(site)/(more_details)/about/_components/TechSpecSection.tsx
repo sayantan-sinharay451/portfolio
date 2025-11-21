@@ -2,55 +2,51 @@ import React from 'react';
 import SectionHeading from '../../../_components/SectionHeading';
 import { ISkill } from '@/lib/models/Skills';
 import SkillCard from './SkillCard';
+import * as icons from 'simple-icons';
+import Image from 'next/image';
+import { Icon } from '@iconify/react';
+import SkillIcon from '@/components/site/SkillIcon';
 
-const skills: ISkill[] = [
+const skills: Partial<ISkill>[] = [
   {
     name: 'JavaScript',
     proficiency: 'Expert',
     category: 'Frontend',
-    icon: { original: '/icons/javascript.svg' },
   },
   {
     name: 'TypeScript',
     proficiency: 'Advanced',
     category: 'Frontend',
-    icon: { original: '/icons/typescript.svg' },
   },
   {
     name: 'React',
     proficiency: 'Expert',
     category: 'Frontend',
-    icon: { original: '/icons/react.svg' },
   },
   {
     name: 'Next.js',
     proficiency: 'Advanced',
     category: 'Frontend',
-    icon: { original: '/icons/nextjs.svg' },
   },
   {
     name: 'Node.js',
     proficiency: 'Intermediate',
     category: 'Backend',
-    icon: { original: '/icons/nodejs.svg' },
   },
   {
     name: 'Express',
     proficiency: 'Intermediate',
     category: 'Backend',
-    icon: { original: '/icons/express.svg' },
   },
   {
     name: 'MongoDB',
     proficiency: 'Intermediate',
     category: 'Database',
-    icon: { original: '/icons/mongodb.svg' },
   },
   {
     name: 'PostgreSQL',
     proficiency: 'Beginner',
     category: 'Database',
-    icon: { original: '/icons/postgresql.svg' },
   },
 ];
 
@@ -66,7 +62,6 @@ const TechSpecSection = () => {
     },
     {} as Record<string, ISkill[]>
   );
-
   return (
     <section>
       <SectionHeading heading="My Tech Stack" />

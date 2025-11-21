@@ -5,10 +5,10 @@ export interface IExperience extends Document {
   position: string;
   startDate: Date;
   endDate?: Date;
-  responsibilities?: string[];
-  technologies?: string[];
-  location?: string;
-  isCurrent?: boolean;
+  responsibilities: string[];
+  technologies: string[];
+  location: string;
+  isCurrent: boolean;
   createdAt?: Date;
   updatedAt?: Date;
 }
