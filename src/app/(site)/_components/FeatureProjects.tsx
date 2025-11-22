@@ -5,6 +5,13 @@ import ProjectCard from '@/components/site/ProjectCard';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import SectionHeading, { SectionHeadingProps } from '@/components/site/SectionHeading';
+
+const sectionHeadingData: SectionHeadingProps = {
+  heading: 'Featured Projects',
+  subheading: 'A selection of my recent work',
+  id: 'featured-projects-section',
+};
 const FeatureProjects = () => {
   // Mock project data
   const initialProjects = [
@@ -87,19 +94,7 @@ const FeatureProjects = () => {
   return (
     <section className="section-spacing bg-surface">
       <div className="container">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4 }}
-          className="mb-12"
-        >
-          <h2 className="text-primary font-heading text-4xl">Featured Projects</h2>
-          <p className="font-contrast text-muted-foreground max-w-2xl">
-            A selection of my recent work
-          </p>
-        </motion.div>
-
+        <SectionHeading {...sectionHeadingData} />
         <div className="mb-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {initialProjects.slice(0, 3).map((project) => (
             <ProjectCard key={project.id} {...project} />

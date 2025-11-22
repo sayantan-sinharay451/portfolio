@@ -1,5 +1,5 @@
 import React from 'react';
-import SectionHeading from '../../../_components/SectionHeading';
+import SectionHeading from '../../../../../components/site/SectionHeading';
 
 const AboutMeSection = () => {
   return (

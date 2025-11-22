@@ -3,6 +3,13 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Code2, Layers, Zap } from 'lucide-react';
 import FeatureCard from '@/components/site/FeatureCard';
+import SectionHeading, { SectionHeadingProps } from '@/components/site/SectionHeading';
+
+const sectionHeadingData: SectionHeadingProps = {
+  heading: 'What I Do',
+  subheading: 'My approach to development and design',
+  id: 'what-i-do-section',
+};
 
 const WhatIDoSection = () => {
   const features = [
@@ -26,19 +33,7 @@ const WhatIDoSection = () => {
   return (
     <section className="section-spacing bg-secondary-dark/50 backdrop-blur-3xl">
       <div className="container">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1 }}
-          className="mb-12"
-        >
-          <h2 className="text-primary font-heading text-4xl">What I Do</h2>
-          <p className="font-contrast text-foreground max-w-2xl font-medium">
-            My approach to development and design
-          </p>
-        </motion.div>
-
+        <SectionHeading {...sectionHeadingData} />
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {features.map((feature, index) => {
             return (

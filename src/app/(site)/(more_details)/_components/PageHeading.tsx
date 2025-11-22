@@ -1,7 +1,8 @@
+'use client';
 import React from 'react';
 import { motion } from 'framer-motion';
 
-interface PageHeadingProps {
+export interface PageHeadingProps {
   title: string;
   subTitle?: string;
 }
@@ -14,8 +15,11 @@ const PageHeading: React.FC<PageHeadingProps> = ({ title, subTitle }) => {
       transition={{ duration: 0.5 }}
       className="section-spacing"
     >
-      <h1 className="text-transparent-gradient w-fit">{title}</h1>
-      <p className="max-w-3xl text-lg text-[var(--color-text-secondary)]">{subTitle}</p>
+      <div className="relative">
+        {/* <div className="bg-primary/20 pointer-events-none absolute top-[50%] left-[50%] h-80 w-80 translate-[50%] transform rounded-full blur-3xl" /> */}
+        <h1 className="text-transparent-gradient w-fit">{title}</h1>
+        <p className="max-w-3xl text-lg text-[var(--color-text-secondary)]">{subTitle}</p>
+      </div>
     </motion.div>
   );
 };

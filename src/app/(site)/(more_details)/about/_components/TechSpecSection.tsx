@@ -1,5 +1,5 @@
 import React from 'react';
-import SectionHeading from '../../../_components/SectionHeading';
+import SectionHeading from '../../../../../components/site/SectionHeading';
 import { ISkill } from '@/lib/models/Skills';
 import SkillCard from './SkillCard';
 import * as icons from 'simple-icons';

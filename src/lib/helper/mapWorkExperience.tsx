@@ -12,7 +12,7 @@ export const mapExperienceToDisplay = (exp: IExperience): ExperienceDisplay => (
   details: [...exp.responsibilities],
   extra:
     exp.technologies && exp.technologies.length > 0 ? (
-      <div className="flex flex-wrap gap-2 pt-1">
+      <div className="flex flex-wrap gap-4 pt-1">
         {exp.technologies.map((tech) => (
           <TechnologyBadge key={tech} name={tech} />
         ))}

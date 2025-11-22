@@ -1,6 +1,4 @@
-'use client';
 import React from 'react';
-import { motion } from 'framer-motion';
 import PageHeading from '../_components/PageHeading';
 import AboutMeSection from './_components/AboutMeSection';
 import TechSpecSection from './_components/TechSpecSection';

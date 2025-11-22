@@ -1,37 +1,47 @@
-import { ComponentPropsWithoutRef } from 'react';
+'use client';
 
-import { cn } from '@/lib/utils';
+import React from 'react';
+import { motion } from 'framer-motion';
 
-export interface AnimatedGradientTextProps extends ComponentPropsWithoutRef<'div'> {
-  speed?: number;
-  colorFrom?: string;
-  colorTo?: string;
+interface AnimatedGradientTextProps {
+  children: React.ReactNode;
+  duration?: number;
+  className?: string;
+  gradientStops?: string;
 }
 
-export function AnimatedGradientText({
+/**
+ * GradientText
+ * - animates background-position so the gradient appears to sweep across the text
+ * - uses background-clip:text and text-transparent
+ */
+export default function AnimatedGradientText({
   children,
+  duration = 4,
   className,
-  speed = 1,
-  colorFrom = '',
-  colorTo = '',
-  ...props
+  gradientStops,
 }: AnimatedGradientTextProps) {
+  // keyframe anim: backgroundPosition X from 0% -> 100% -> 0% for seamless loop
+  const animateBg = {
+    backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+  };
+
+  const transition = {
+    duration,
+    ease: 'linear' as const,
+    repeat: Infinity,
+    repeatType: 'loop' as const,
+  };
+
   return (
-    <span
-      style={
-        {
-          '--bg-size': `${speed * 300}%`,
-          '--color-from': colorFrom,
-          '--color-to': colorTo,
-        } as React.CSSProperties
-      }
-      className={cn(
-        `animate-gradient inline bg-gradient-to-r from-[var(--color-from)] via-[var(--color-to)] to-[var(--color-from)] bg-[length:var(--bg-size)_100%] bg-clip-text text-transparent`,
-        className
-      )}
-      {...props}
+    <motion.span
+      aria-hidden={false}
+      initial={true}
+      animate={animateBg}
+      transition={transition}
+      className={`${className} ${gradientStops} bg-[length:200%_200%] bg-clip-text text-transparent`}
     >
       {children}
-    </span>
+    </motion.span>
   );
 }

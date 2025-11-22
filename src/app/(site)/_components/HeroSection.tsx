@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import SpotifyNowPlaying from './SpotifyNowPlaying';
 import { Button } from '@/components/ui/button';
 import { ArrowUpRight } from 'lucide-react';
-import { AnimatedGradientText } from '@/components/ui/animated-gradient-text';
+import AnimatedGradientText from '@/components/ui/animated-gradient-text';
 
 const HeroSection = () => {
   const router = useRouter();
@@ -49,9 +49,12 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="font-body !from-primary-light !to-accent !bg-gradient-to-r bg-clip-text text-2xl leading-tight text-transparent md:text-3xl"
           >
-            <AnimatedGradientText speed={0.2} colorFrom="#05a3ca">
+            <AnimatedGradientText
+              duration={4}
+              gradientStops="from-primary-light to-accent"
+              className="font-body bg-gradient-to-r text-2xl leading-tight text-transparent md:text-3xl"
+            >
               Building Digital Experiences
               <br />
               That Matter

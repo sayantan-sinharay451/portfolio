@@ -1,10 +1,11 @@
+'use client';
 import React from 'react';
 import { motion } from 'framer-motion';
 
-interface SectionHeadingProps {
-  heading?: string;
+export interface SectionHeadingProps {
+  heading: string;
   subheading?: string;
-  id?: string;
+  id: string;
 }
 
 const SectionHeading = ({ heading, subheading, id }: SectionHeadingProps) => {

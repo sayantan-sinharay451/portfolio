@@ -22,7 +22,7 @@ const proficiencyToValue = (proficiency: 'Beginner' | 'Intermediate' | 'Advanced
 
 const SkillCard: React.FC<SkillCardProps> = ({ skill }) => {
   return (
-    <div className="border-primary-light flex items-center gap-4 rounded-lg border-1 p-4">
+    <div className="border-primary-light/30 flex items-center gap-4 rounded-md border-2 p-4">
       <SkillIcon name={skill.name} size={48} />
       <div className="w-full">
         <div className="mb-1 flex items-center justify-between">
