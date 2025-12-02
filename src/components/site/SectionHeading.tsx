@@ -19,7 +19,7 @@ const SectionHeading = ({ heading, subheading, id }: SectionHeadingProps) => {
       className="mb-12"
     >
       <h2 className="text-primary font-heading text-4xl">{heading}</h2>
-      <p className="font-contrast text-foreground max-w-2xl font-medium">{subheading}</p>
+      <p className="font-contrast text-muted-foreground max-w-2xl font-medium">{subheading}</p>
     </motion.div>
   );
 };

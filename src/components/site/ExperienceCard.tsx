@@ -1,16 +1,17 @@
 import React from 'react';
-import { Briefcase, GraduationCap, Award, BookOpen, MapPin } from 'lucide-react';
+import { Briefcase, GraduationCap, MapPin } from 'lucide-react';
+import { Location } from '@/types/Location';
 
 export interface ExperienceDisplay {
-  type: 'work' | 'education' | 'certification' | 'volunteer' | 'award';
-  title: string; // e.g., Software Engineer / B.Tech / Certificate Name
-  subtitle: string; // company / institution / provider
-  location?: string;
+  type: 'work' | 'education';
+  title: string;
+  subtitle: string;
+  location?: Location;
   startDate: Date;
   endDate?: Date;
-  details: string[]; // bullet points
+  details: string[];
   icon?: React.ReactNode;
-  extra?: React.ReactNode; // react elements like tags
+  extra?: React.ReactNode;
 }
 
 interface ExperienceCardProps {
@@ -26,12 +27,6 @@ const getIcon = (item: ExperienceDisplay) => {
     case 'education':
       return <GraduationCap className={commonClass} size={24} />;
     case 'work':
-      return <Briefcase className={commonClass} size={24} />;
-    case 'volunteer':
-      return <BookOpen className={commonClass} size={24} />;
-    case 'award':
-      return <Award className={commonClass} size={24} />;
-    default:
       return <Briefcase className={commonClass} size={24} />;
   }
 };
@@ -68,7 +63,7 @@ const ExperienceCard = ({ item }: ExperienceCardProps) => {
 
             {item.location && (
               <span className="flex items-center gap-1 text-sm">
-                <MapPin size={15} /> {item.location}
+                <MapPin size={15} /> {item.location.city}, {item.location.country}
               </span>
             )}
           </div>

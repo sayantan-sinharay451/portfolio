@@ -1,4 +1,6 @@
+import { Location } from "@/types/Location";
 import mongoose, { Schema, Document } from "mongoose";
+import { LocationSchema } from "./Location";
 
 export interface IExperience extends Document {
   company: string;
@@ -7,7 +9,7 @@ export interface IExperience extends Document {
   endDate?: Date;
   responsibilities: string[];
   technologies: string[];
-  location: string;
+  location: Location;
   isCurrent: boolean;
   createdAt?: Date;
   updatedAt?: Date;
@@ -21,7 +23,7 @@ const ExperienceSchema: Schema = new Schema(
     endDate: { type: Date },
     responsibilities: [{ type: String }],
     technologies: [{ type: String }],
-    location: { type: String },
+    location: { type: LocationSchema, required: true },
     isCurrent: { type: Boolean, default: false },
   },
   { timestamps: true }

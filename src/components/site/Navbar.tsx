@@ -59,19 +59,6 @@ export function Navbar({ currentPage, onNavigate }: NavbarProps) {
               )}
             </Link>
           ))}
-
-          {/* Admin Link */}
-          {/* <button
-            onClick={() => onNavigate("admin")}
-            title="Admin Dashboard"
-            className={`flex items-center gap-2 px-3 py-1.5 rounded-md font-medium transition-all duration-200 ${currentPage === "admin"
-              ? "bg-primary text-primary-foreground shadow-md"
-              : "text-muted hover:text-primary hover:bg-surface-elevated"
-              } focus:outline-none focus-visible:ring-2 focus-visible:ring-ring`}
-          >
-            <Lock size={16} strokeWidth={1.8} />
-            <span className="text-sm">Admin</span>
-          </button> */}
         </div>
 
         {/* Mobile Menu Button */}
@@ -109,21 +96,6 @@ export function Navbar({ currentPage, onNavigate }: NavbarProps) {
                   {item.label}
                 </button>
               ))}
-
-              <div className="border-border mt-4 border-t pt-4">
-                <button
-                  onClick={() => {
-                    onNavigate('admin');
-                    setMobileMenuOpen(false);
-                  }}
-                  className={`flex w-full items-center gap-2 py-2 text-left ${
-                    currentPage === 'admin' ? 'text-primary' : 'text-muted hover:text-primary'
-                  }`}
-                >
-                  <Lock size={16} />
-                  <span className="font-medium">Admin Dashboard</span>
-                </button>
-              </div>
             </div>
           </motion.div>
         )}

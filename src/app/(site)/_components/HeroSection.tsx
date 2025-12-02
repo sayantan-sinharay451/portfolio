@@ -1,50 +1,42 @@
-'use client'; // This directive is required for client components
+'use client';
 
 import { motion } from 'framer-motion';
-import { useRouter } from 'next/navigation';
-import SpotifyNowPlaying from './SpotifyNowPlaying';
 import { Button } from '@/components/ui/button';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import AnimatedGradientText from '@/components/ui/animated-gradient-text';
 
 const HeroSection = () => {
-  const router = useRouter();
-
-  const onNavigate = (section: string) => {
-    router.push(`/#${section}`);
-  };
-
   return (
-    <section className="container flex min-h-[100vh] items-start py-20 md:py-32">
+    <section className="section-spacing container flex min-h-[100vh] flex-grow items-center">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.1 }}
-        className="w-full max-w-5xl"
+        className="w-full md:max-w-5xl"
       >
-        <div className="space-y-1">
-          {/* Role Badge */}
+        <div className="space-y-2 md:space-y-4">
+          {/* Top Badge */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <span className="bg-primary-container/20 border-primary text-primary-foreground inline-flex items-center rounded-full border px-3 py-1 font-sans text-sm backdrop-blur-sm">
+            <span className="bg-primary-container/20 border-primary text-primary-foreground inline-flex items-center rounded-full border px-3 py-1 font-sans text-xs backdrop-blur-sm sm:text-sm">
               Full Stack Developer
             </span>
           </motion.div>
 
-          {/* Developer Name */}
+          {/* Name */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="font-heading text-foreground text-6xl leading-tight font-bold tracking-tight md:!text-7xl lg:!text-8xl"
+            className="font-heading text-transparent-gradient !text-6xl leading-[1.1] font-bold tracking-tight sm:!text-6xl md:!text-7xl lg:!text-8xl"
           >
-            <div className="text-transparent-gradient">Sayantan Sinharay</div>
+            Sayantan Sinharay
           </motion.h1>
 
-          {/* Tagline */}
+          {/* Subtitle */}
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -53,7 +45,7 @@ const HeroSection = () => {
             <AnimatedGradientText
               duration={4}
               gradientStops="from-primary-light to-accent"
-              className="font-body bg-gradient-to-r text-2xl leading-tight text-transparent md:text-3xl"
+              className="font-body bg-gradient-to-r !text-2xl leading-snug font-semibold text-transparent sm:!text-2xl md:!text-3xl lg:!text-5xl"
             >
               Building Digital Experiences
               <br />
@@ -61,12 +53,12 @@ const HeroSection = () => {
             </AnimatedGradientText>
           </motion.h2>
 
-          {/* Description */}
+          {/* Paragraph */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.5 }}
-            className="font-contrast max-w-2xl text-lg leading-relaxed"
+            className="font-contrast max-w-xl py-5 text-base leading-relaxed font-light sm:text-lg md:max-w-2xl md:pt-5 md:text-xl"
           >
             I craft beautiful, performant web applications with modern technologies. Passionate
             about creating intuitive user experiences and writing clean, maintainable code.
@@ -77,32 +69,23 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.6 }}
-            className="flex flex-wrap gap-4 pt-4"
+            className="flex w-full flex-col gap-4 sm:w-[70%] sm:flex-row sm:gap-8 md:w-[55%] lg:w-[45%]"
           >
             <Button
               size="lg"
-              className="bg-primary-container text-primary-light border-primary-light hover:bg-primary hover:text-primary-container"
+              className="bg-primary-container text-primary-light border-primary-light hover:bg-primary hover:text-primary-container w-full"
             >
               View Projects <ArrowUpRight className="ml-1 size-4" />
             </Button>
+
             <Button
               variant="outline"
               size="lg"
-              className="text-primary-foreground border-primary-light hover:text-primary-light hover:border-primary-container border-2"
+              className="text-primary-foreground border-primary-light hover:text-primary-light hover:border-primary-container w-full border-2"
             >
-              Get In Touch
+              Get In Touch <ArrowRight className="ml-1 size-4" />
             </Button>
           </motion.div>
-
-          {/* Spotify Badge */}
-          {/* <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.7 }}
-            className="pt-8"
-          >
-            <SpotifyNowPlaying />
-          </motion.div> */}
         </div>
       </motion.div>
     </section>

@@ -2,15 +2,16 @@ import mongoose, { Schema, Document } from "mongoose";
 
 export interface IProject extends Document {
   title: string;
+  shortDescription: string;
   description: string;
   githubUrl?: string;
   liveUrl?: string;
-  blogUrl?: string;
   tags?: string[];
   category?: string;
-  technologies?: string[];
+  technologies: string[];
   isArchived?: boolean;
-  imageUrl?: string;
+  isFeatured?: boolean;
+  images?: string[];
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -18,13 +19,15 @@ export interface IProject extends Document {
 const ProjectSchema: Schema = new Schema(
   {
     title: { type: String, required: true },
+    shortDescription: {
+      type: String, required: true
+    },
     description: { type: String, required: true },
     githubUrl: { type: String },
     liveUrl: { type: String },
-    blogUrl: { type: String },
     tags: [{ type: String }],
     technologies: [{ type: Schema.Types.ObjectId, ref: 'Skill' }],
-    imageUrl: { type: String },
+    images: { type: String },
   },
   { timestamps: true }
 );

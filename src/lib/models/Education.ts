@@ -1,9 +1,11 @@
+import { Location } from "@/types/Location";
 import mongoose, { Schema, Document } from "mongoose";
+import { LocationSchema } from "./Location";
 
 export interface IEducation extends Document {
   institution: string;
   degree: string;
-  location?: string;
+  location?: Location;
   fieldOfStudy: string;
   startDate: Date;
   endDate?: Date;
@@ -19,7 +21,7 @@ const EducationSchema: Schema = new Schema(
   {
     institution: { type: String, required: true },
     degree: { type: String, required: true },
-    location: { type: String },
+    location: { type: LocationSchema, required: true },
     fieldOfStudy: { type: String, required: true },
     startDate: { type: Date, required: true },
     endDate: { type: Date },
@@ -32,4 +34,4 @@ const EducationSchema: Schema = new Schema(
 );
 
 export default mongoose.models.Education ||
-  mongoose.model<IEducation>("Education", EducationSchema); 
+  mongoose.model<IEducation>("Education", EducationSchema);

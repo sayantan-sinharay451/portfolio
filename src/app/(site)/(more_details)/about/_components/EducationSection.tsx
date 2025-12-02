@@ -2,7 +2,7 @@ import React from 'react';
 import SectionHeading from '../../../../../components/site/SectionHeading';
 import EducationCard from '@/components/site/ExperienceCard';
 import { IEducation } from '@/lib/models/Education';
-import { mapEducationToDisplay } from '@/lib/helper/mapEductaionExpirenece';
+import { mapEducationToDisplay } from '@/utils/mapEductaionExpirenece';
 
 const educations: Partial<IEducation>[] = [
   {

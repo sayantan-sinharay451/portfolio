@@ -1,5 +1,10 @@
 import mongoose, { Schema, Document } from "mongoose";
 
+interface SocialLink {
+  name: string;
+  url: string;
+}
+
 export interface IUser extends Document {
   firstName: string;
   lastName: string;
@@ -7,12 +12,9 @@ export interface IUser extends Document {
   passwordHash: string;
   aboutMe?: string;
   image?: string;
-  socialLinks?: {
-    github?: string;
-    linkedin?: string;
-    twitter?: string;
-    personalWebsite?: string;
-  };
+  github?: string;
+  linkedin?: string;
+  socialLinks?: SocialLink[];
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -27,11 +29,13 @@ const UserSchema: Schema = new Schema(
   {
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
-    email: { type: String, required: true, unique: true },
+    email: { type: String, required: true },
     passwordHash: { type: String, required: true },
-    aboutMe: { type: String },
+    aboutMe: { type: String, required: true },
     image: { type: String },
-    socialLinks: { type: [SocialLinksSchema] },
+    github: { type: String },
+    linkedin: { type: String },
+    socialLinks: { type: [SocialLinksSchema], required: false },
   },
   { timestamps: true }
 );

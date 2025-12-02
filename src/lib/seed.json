@@ -1,0 +1,191 @@
+{
+  "user": {
+    "firstName": "Sayantan",
+    "lastName": "Sinharay",
+    "email": "sayatansinharay@gmail.com",
+    "passwordHash": "REPLACE_WITH_HASH",
+    "aboutMe": "Frontend Engineer with 3 years of experience building scalable SaaS and healthcare platforms. Specialized in React, Next.js, and frontend system design. Focused on performance optimization, UI consistency, reusable component libraries, and accessible design. Experienced in React 18 migrations, design system architecture, and cross-functional collaboration.",
+    "image": "/images/profile.jpg",
+    "socialLinks": [
+      { "name": "github", "url": "https://github.com/Sayantansinharay451" },
+      { "name": "linkedin", "url": "https://www.linkedin.com/in/sayantan-sinharay" }
+    ]
+  },
+
+  "education": [
+    {
+      "institution": "University of Engineering and Management, Jaipur",
+      "degree": "B.Tech",
+      "fieldOfStudy": "Computer Science & Engineering",
+      "location": {
+        "country": "India",
+        "state": "Rajasthan",
+        "city": "Jaipur"
+      },
+      "startDate": "2019-07-01T00:00:00.000Z",
+      "endDate": "2023-06-01T00:00:00.000Z",
+      "grade": "SGPA: 7.45",
+      "activities": [
+        "Organized 150+ student coding contests",
+        "Competitive programming on CodeChef, LeetCode, GFG, HackerRank, Codeforces"
+      ],
+      "curriculum": [],
+      "description": "Completed a Bachelor of Technology in Computer Science & Engineering with strong involvement in competitive programming and academic research."
+    }
+  ],
+
+  "experience": [
+    {
+      "company": "HashedIn by Deloitte",
+      "position": "Software Engineer I",
+      "location": {
+        "country": "India",
+        "state": "Maharashtra",
+        "city": "Pune"
+      },
+      "startDate": "2024-07-01T00:00:00.000Z",
+      "isCurrent": true,
+      "responsibilities": [
+        "Migrated CALHEERS medical insurance portal from React 15 to React 18",
+        "Replaced Flux with Redux Toolkit + Thunk",
+        "Implemented i18n, lazy loading, custom hooks",
+        "Ensured HIPAA compliance and integrated SonarQube",
+        "Maintained 90%+ unit test coverage",
+        "Built a reusable component library with Storybook",
+        "Upgraded DNA employee portal with React 18 and Ant Design"
+      ],
+      "impact": [
+        "Improved platform performance and maintainability",
+        "Reduced UI defects and maintenance overhead by 30%",
+        "Accelerated developer delivery speed by 40%",
+        "Improved design-to-code efficiency by 30%"
+      ],
+      "technologies": [
+        "React 18",
+        "Redux Toolkit",
+        "TypeScript",
+        "React-hook-form",
+        "Vite",
+        "Ant Design",
+        "Material-UI",
+        "Storybook",
+        "SonarQube"
+      ]
+    },
+    {
+      "company": "The Digital Group Inc.",
+      "position": "Associate Software Engineer",
+      "location": {
+        "country": "India",
+        "state": "Maharashtra",
+        "city": "Pune"
+      },
+      "startDate": "2023-12-01T00:00:00.000Z",
+      "endDate": "2024-05-31T00:00:00.000Z",
+      "isCurrent": false,
+      "responsibilities": [
+        "Optimized Webpack builds and lazy-loaded components",
+        "Developed note-taking application with reminder notifications and drag-and-drop",
+        "Created modular NPM package using Ag-Grid and Verdaccio",
+        "Performed CI/CD maintenance and peer code reviews",
+        "Contributed to Agile/TDD sprints"
+      ],
+      "impact": [
+        "Reduced page load time from 1.88s to 602ms",
+        "Improved SEO and user experience significantly",
+        "Enabled reusable internal components across multiple products"
+      ],
+      "technologies": [
+        "React",
+        "Webpack",
+        "Ag-Grid",
+        "Slate.js",
+        "dnd-kit",
+        "Material-UI",
+        "Verdaccio",
+        "Nest.js",
+        "GraphQL"
+      ]
+    },
+    {
+      "company": "Kreeti Technologies Pvt. Ltd.",
+      "position": "Trainee Software Engineer",
+      "location": {
+        "country": "India",
+        "state": "West Bengal",
+        "city": "Kolkata"
+      },
+      "startDate": "2023-02-01T00:00:00.000Z",
+      "endDate": "2023-11-30T00:00:00.000Z",
+      "isCurrent": false,
+      "responsibilities": [
+        "Developed full-stack applications using Ruby on Rails",
+        "Built REST APIs and PostgreSQL-backed features",
+        "Implemented accessibility-compliant UI designs",
+        "Participated in Agile/Scrum sprints"
+      ],
+      "impact": [
+        "Improved product accessibility and performance",
+        "Delivered scalable backend features with clean API structure"
+      ],
+      "technologies": ["Ruby on Rails", "React", "JavaScript ES6+", "PostgreSQL", "HTML5", "CSS3"]
+    }
+  ],
+
+  "projects": [
+    {
+      "title": "Weeb-World (Anime Social SPA)",
+      "description": "A single-page anime social app built with React, Redux, responsive UI, and real-time interactive features.",
+      "githubUrl": "https://github.com/Sayantansinharay451",
+      "liveUrl": "http://weeb-world.netlify.app/",
+      "tags": ["React", "Redux", "SPA", "Realtime"],
+      "technologies": [],
+      "imageUrl": "/images/projects/weeb-world.png",
+      "isArchived": false
+    },
+    {
+      "title": "React Image Gallery",
+      "description": "A performance-optimized image gallery built with lazy loading, accessibility features, and external API integration.",
+      "githubUrl": "https://github.com/Sayantansinharay451",
+      "liveUrl": "http://react-image-gallery-project.netlify.app/",
+      "tags": ["React", "Lazy Loading", "Performance"],
+      "technologies": [],
+      "imageUrl": "/images/projects/image-gallery.png",
+      "isArchived": false
+    }
+  ],
+
+  "skills": [
+    {
+      "name": "JavaScript",
+      "proficiency": "Expert",
+      "category": "Language",
+      "yearsOfExperience": 3
+    },
+    {
+      "name": "TypeScript",
+      "proficiency": "Advanced",
+      "category": "Language",
+      "yearsOfExperience": 3
+    },
+    { "name": "React", "proficiency": "Expert", "category": "Frontend", "yearsOfExperience": 3 },
+    {
+      "name": "Next.js",
+      "proficiency": "Advanced",
+      "category": "Frontend",
+      "yearsOfExperience": 2
+    },
+    { "name": "Redux Toolkit", "proficiency": "Expert", "category": "Frontend" },
+    { "name": "Storybook", "proficiency": "Advanced", "category": "Tools" },
+    { "name": "Tailwind CSS", "proficiency": "Advanced", "category": "UI" },
+    { "name": "Material-UI", "proficiency": "Advanced", "category": "UI" },
+    { "name": "Ant Design", "proficiency": "Advanced", "category": "UI" },
+    { "name": "Webpack", "proficiency": "Intermediate", "category": "Tools" },
+    { "name": "Vite", "proficiency": "Advanced", "category": "Tools" },
+    { "name": "Ruby on Rails", "proficiency": "Intermediate", "category": "Backend" },
+    { "name": "Nest.js", "proficiency": "Beginner", "category": "Backend" },
+    { "name": "GraphQL", "proficiency": "Beginner", "category": "Backend" },
+    { "name": "PostgreSQL", "proficiency": "Intermediate", "category": "Database" },
+    { "name": "Git", "proficiency": "Advanced", "category": "Tools" }
+  ]
+}

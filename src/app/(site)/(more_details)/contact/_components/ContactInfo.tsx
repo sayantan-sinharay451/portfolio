@@ -38,7 +38,6 @@ export default function ContactInfo() {
 
   return (
     <div className="space-y-6">
-      <h2 className="text-3xl font-semibold text-white">Contact Information</h2>
       <p className="max-w-md text-gray-400">
         Feel free to reach out through any of these channels.
       </p>

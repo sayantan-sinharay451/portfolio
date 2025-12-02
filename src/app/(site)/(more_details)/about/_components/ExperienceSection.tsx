@@ -1,7 +1,7 @@
 import React from 'react';
 import SectionHeading from '../../../../../components/site/SectionHeading';
 import ExperienceCard from '@/components/site/ExperienceCard';
-import { mapExperienceToDisplay } from '@/lib/helper/mapWorkExperience';
+import { mapExperienceToDisplay } from '@/utils/mapWorkExperience';
 import { IExperience } from '@/lib/models/Experience';
 
 const experiences: Partial<IExperience>[] = [

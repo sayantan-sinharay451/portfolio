@@ -1,5 +1,5 @@
 import TechnologyBadge from '@/components/site/TechnologyBadge';
-import { IExperience } from '../models/Experience';
+import { IExperience } from '../lib/models/Experience';
 import { ExperienceDisplay } from '@/components/site/ExperienceCard';
 
 export const mapExperienceToDisplay = (exp: IExperience): ExperienceDisplay => ({

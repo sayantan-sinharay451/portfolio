@@ -2,47 +2,51 @@
 
 @import 'tailwindcss';
 
-@custom-variant dark (&:is(.dark *));
-
 :root {
   /* ===== NEUTRALS / BASE ===== */
   --color-bg: #0a0a0a;
-  --color-surface: #121212;
+  --color-surface: #111111;
   --color-surface-elevated: #1a1a1a;
+  --color-surface-highlight: #1f1f1f;
 
   /* ===== TEXT ===== */
-  --color-text-primary: #f1f5f9;
-  --color-text-secondary: #94a3b8;
-  --color-text-tertiary: #64748b;
+  --color-text-primary: #f5f5f5; /* High contrast white */
+  --color-text-secondary: #d1d1d1; /* Muted white */
+  --color-text-tertiary: #9ca3af; /* Subtle gray */
+  --color-text-disabled: #6b7280; /* Disabled tone  */
 
   /* ===== BORDER ===== */
-  --color-border: #27272a;
-  --color-border-hover: #3f3f46;
+  --color-border: #262626;
+  --color-border-hover: #333333;
+  --color-divider: #1f1f1f;
 
   /* ===== BRAND / PRIMARY ===== */
-  --color-primary: #10b981; /* Emerald 500 */
-  --color-primary-light: #6ee7b7; /* Emerald 300 */
-  --color-primary-dark: #047857; /* Emerald 700 */
-  --color-primary-hover: #34d399; /* Emerald 400 */
+  --color-primary: #10b981;
+  --color-primary-light: #34d399;
+  --color-primary-dark: #059669;
+  --color-primary-faded: rgba(16, 185, 129, 0.15);
   --color-primary-container: #052e16;
-  --color-text-on-primary: #ffffff;
 
   /* ===== New Teal Blue Palette ===== */
-  --color-accent-teal-dark: #115e59;
-  --color-accent-teal-base: #0d9488;
-  --color-accent-teal-light: #5eead4;
+  --color-secondary: #0d9488;
+  --color-secondary-light: #5eead4;
+  --color-secondary-dark: #115e59;
 
   /* ===== New Classic Blue Palette ===== */
   --color-accent-blue: #05a3ca;
-  --color-accent-navy-dark: #024e66;
-  --color-accent-royal-base: #0481a2;
-  --color-accent-sky-light: #82e3ed;
 
   /* ===== SEMANTIC ===== */
   --color-success: #22c55e;
-  --color-warning: #f59e0b;
+  --color-warning: #eab308;
   --color-error: #ef4444;
   --color-info: #3b82f6;
+
+  /* ===== White ===== */
+  --white-100: #ffffff;
+  --white-90: #ededed;
+  --white-80: #d4d4d4;
+  --white-70: #bfbfbf;
+  --white-60: #a3a3a3;
 
   /* ===== TYPOGRAPHY ===== */
   --font-heading: 'Outfit', 'Space Grotesk', sans-serif;
@@ -112,10 +116,6 @@
 
   /* Accent / Blue */
   --color-accent: var(--color-accent-blue);
-  --color-accent-base: var(--color-accent-royal-base);
-  --color-accent-light: var(--color-accent-sky-light);
-  --color-accent-dark: var(--color-accent-navy-dark);
-  --color-accent-foreground: var(--color-text-on-primary);
 
   /* Borders */
   --color-border: var(--color-border);
