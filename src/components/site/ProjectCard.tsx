@@ -1,15 +1,10 @@
 import React, { MouseEventHandler, useMemo, useRef, useState } from 'react';
 import { ExternalLink, GithubIcon } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
-import { Badge } from '../ui/badge';
 import { IProject } from '@/lib/models/Project';
 import TechnologyBadge from './TechnologyBadge';
 import TextBadge from './TextBadge';
 import Link from 'next/link';
-
-interface ProjectCardProps extends IProject {
-  isFeaturedCard?: boolean;
-}
 
 const ProjectCard = ({
   _id,
@@ -20,24 +15,27 @@ const ProjectCard = ({
   tags,
   githubUrl,
   liveUrl,
-  category,
   isFeatured,
-  isFeaturedCard = false,
-}: ProjectCardProps) => {
+}: IProject) => {
   const [expanded, setExpanded] = useState(false);
 
-  const initialText = shortDescription || description;
-  const isExpandable = useMemo(() => description && description.length > 360, [description]);
+  const isExpandable = useMemo(() => description && description.length > 300, [description]);
+
+  const displayDescription = useMemo(() => {
+    if (!description) return '';
+    if (!isExpandable || expanded) return description;
+    return description.slice(0, 300) + '...';
+  }, [description, isExpandable, expanded]);
   return (
     <Card className="card-aesthetic group relative overflow-hidden border-none p-6 md:p-8">
       <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-b from-transparent to-black/60" />
       <CardHeader>
-        <CardTitle className="flex items-center justify-between py-5">
+        <CardTitle className="flex items-center justify-between gap-3 py-5">
           <h3 className="text-foreground group-hover:text-primary line-clamp-2 text-2xl font-semibold md:text-3xl">
             {title}
           </h3>
 
-          <div className="flex items-center gap-3">
+          <div className="mb-auto flex gap-3">
             {githubUrl && (
               <a href={githubUrl} target="_blank" rel="noreferrer" aria-label="GitHub">
                 <GithubIcon size={20} className="hover:text-primary transition" />
@@ -51,9 +49,9 @@ const ProjectCard = ({
           </div>
         </CardTitle>
         <div className="flex flex-wrap gap-2">
-          {technologies &&
-            technologies.length > 0 &&
-            technologies.map((tg: string) => <TextBadge key={tg} text={tg} size="sm" />)}
+          {tags &&
+            tags.length > 0 &&
+            tags.map((tg: string) => <TextBadge key={tg} text={tg} size="sm" />)}
         </div>
       </CardHeader>
 
@@ -66,10 +64,10 @@ const ProjectCard = ({
         </div>
         <CardDescription className="text-muted py-4 font-medium">
           <div className="mt-4">
-            {!expanded ? (
-              <p className="text-foreground/70 line-clamp-4 leading-relaxed">{initialText}</p>
+            {isFeatured ? (
+              <p className="text-foreground/70 line-clamp-4 leading-relaxed">{shortDescription}</p>
             ) : (
-              <p className="text-foreground/70 leading-relaxed">{description}</p>
+              <p className="text-foreground/70 leading-relaxed">{displayDescription}</p>
             )}
 
             {isExpandable && (
@@ -82,12 +80,14 @@ const ProjectCard = ({
             )}
           </div>
         </CardDescription>
-        <Link
-          href={`/projects/${_id ?? ''}`}
-          className="hover:!text-primary text-sm font-medium transition hover:!underline"
-        >
-          View project →
-        </Link>
+        {!isFeatured && (
+          <Link
+            href={`/projects/${_id ?? ''}`}
+            className="hover:!text-primary text-sm font-medium transition hover:!underline"
+          >
+            View project →
+          </Link>
+        )}
       </CardContent>
     </Card>
   );

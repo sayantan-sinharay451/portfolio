@@ -39,7 +39,7 @@ export const projectSeeds = [
     title: "NoteSphere – Advanced Note-Taking App",
     shortDescription: "Note-taking app with reminders, drag-and-drop, and rich content editing.",
     description:
-      "A full-featured internal note-taking application with reminder notifications, drag-and-drop (dnd-kit), Slate-based rich text editing, multi-level indentation, and reusable UI patterns.",
+      "A full-featured internal note-taking application with reminder notifications, drag-and-drop (dnd-kit), Slate-based rich text editing, multi-level indentation, and reusable UI patterns. Optimized for productivity and user experience.A full-featured internal note-taking application with reminder notifications, drag-and-drop (dnd-kit), Slate-based rich text editing, multi-level indentation, and reusable UI patterns. Optimized for productivity and user experience.A full-featured internal note-taking application with reminder notifications, drag-and-drop (dnd-kit), Slate-based rich text editing, multi-level indentation, and reusable UI patterns. Optimized for productivity and user experience.A full-featured internal note-taking application with reminder notifications, drag-and-drop (dnd-kit), Slate-based rich text editing, multi-level indentation, and reusable UI patterns. Optimized for productivity and user experience.A full-featured internal note-taking application with reminder notifications, drag-and-drop (dnd-kit), Slate-based rich text editing, multi-level indentation, and reusable UI patterns. Optimized for productivity and user experience. ",
     githubUrl: "",
     liveUrl: "",
     tags: ["React", "SlateJS", "dnd-kit"],

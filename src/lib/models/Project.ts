@@ -7,7 +7,6 @@ export interface IProject extends Document {
   githubUrl?: string;
   liveUrl?: string;
   tags?: string[];
-  category?: string;
   technologies: string[];
   isArchived?: boolean;
   isFeatured?: boolean;

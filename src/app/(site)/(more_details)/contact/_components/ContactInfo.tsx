@@ -38,10 +38,6 @@ export default function ContactInfo() {
 
   return (
     <div className="space-y-6">
-      <p className="max-w-md text-gray-400">
-        Feel free to reach out through any of these channels.
-      </p>
-
       <div className="space-y-4">
         {contactItems.map((item, index) => (
           <div

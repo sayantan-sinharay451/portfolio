@@ -22,8 +22,8 @@ const FeatureProjects = () => {
       <div className="container">
         <SectionHeading {...sectionHeadingData} />
         <div className="mb-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {initialProjects.slice(0, 3).map((project) => (
-            <ProjectCard {...project} />
+          {initialProjects.slice(0, 3).map((project, i) => (
+            <ProjectCard {...project} key={i} isFeatured={true} />
           ))}
         </div>
         <div className="mt-12 text-center">
