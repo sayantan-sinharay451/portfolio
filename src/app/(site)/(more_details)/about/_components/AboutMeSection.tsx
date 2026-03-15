@@ -6,7 +6,6 @@ const AboutMeSection = () => {
     <section>
       <SectionHeading heading="Who I am?" />
       <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-3">
-        <div className="md:col-span-1"></div>
         <div className="md:col-span-2">
           <p className="mb-6 text-lg text-gray-400">
             Hello! I'm a passionate and results-oriented software engineer with a strong foundation

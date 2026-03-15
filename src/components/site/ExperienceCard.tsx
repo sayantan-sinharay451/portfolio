@@ -1,18 +1,24 @@
 import React from 'react';
 import { Briefcase, GraduationCap, MapPin } from 'lucide-react';
 import { Location } from '@/types/Location';
+import TechnologyBadge from '@/components/site/TechnologyBadge';
+import { Badge } from '@/components/ui/badge';
 
 export interface ExperienceDisplay {
   type: 'work' | 'education';
   title: string;
   subtitle: string;
-  location?: Location;
+  location?: Location | string;
   startDate: Date;
   endDate?: Date;
   details: string[];
   icon?: React.ReactNode;
-  extra?: React.ReactNode;
-}
+  // structured, serializable fields for extra UI
+  technologies?: string[];
+  grade?: string;
+  activities?: string[];
+  curriculum?: string[];
+} 
 
 interface ExperienceCardProps {
   item: ExperienceDisplay;
@@ -44,7 +50,6 @@ const formatePeriod = (startDate: Date, endDate?: Date | undefined): string => {
 };
 
 const ExperienceCard = ({ item }: ExperienceCardProps) => {
-  console.log(item);
   return (
     <div className="flex gap-6">
       <div className="bg-primary/30 flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-xl">
@@ -63,7 +68,12 @@ const ExperienceCard = ({ item }: ExperienceCardProps) => {
 
             {item.location && (
               <span className="flex items-center gap-1 text-sm">
-                <MapPin size={15} /> {item.location.city}, {item.location.country}
+                <MapPin size={15} />{' '}
+                {typeof item.location === 'string'
+                  ? item.location
+                  : [item.location.city, item.location.state, item.location.country]
+                      .filter(Boolean)
+                      .join(', ')}
               </span>
             )}
           </div>
@@ -77,8 +87,53 @@ const ExperienceCard = ({ item }: ExperienceCardProps) => {
           </ul>
         )}
 
-        {/* Extra UI Elements (tags, links, etc.) */}
-        {item.extra && <div className="pt-2">{item.extra}</div>}
+        {/* Technologies (for work) */}
+        {item.technologies && item.technologies.length > 0 && (
+          <div className="pt-2">
+            <div className="flex flex-wrap gap-4 pt-1">
+              {item.technologies.map((tech) => (
+                <TechnologyBadge key={tech} name={tech} />
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Education-specific extras */}
+        {item.type === 'education' && (
+          <div className="pt-2 space-y-3">
+            {item.grade && (
+              <div className="bg-primary/10 border-primary/30 text-primary inline-flex items-center gap-2 rounded-lg border px-3 py-1.5 text-sm font-medium shadow-[0_0_10px_rgba(16,185,129,0.25)] backdrop-blur-md">
+                <span>Grade / CGPA:</span>
+                <span className="font-semibold text-white">{item.grade}</span>
+              </div>
+            )}
+
+            {item.activities && item.activities.length > 0 && (
+              <div>
+                <h5 className="text-primary mb-1 text-sm font-semibold">Activities & Contributions</h5>
+                <ul className="text-muted-foreground list-inside list-disc space-y-1 text-sm">
+                  {item.activities.map((act, i) => (
+                    <li key={i}>{act}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {item.curriculum && item.curriculum.length > 0 && (
+              <div className="pt-2">
+                <h5 className="text-primary mb-2 text-sm font-semibold">Curriculum Highlights</h5>
+
+                <div className="flex flex-wrap gap-3">
+                  {item.curriculum.map((course) => (
+                    <Badge variant="outline" key={course}>
+                      {course}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

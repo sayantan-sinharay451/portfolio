@@ -1,7 +1,18 @@
-import React, { MouseEventHandler, useMemo, useRef, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { ExternalLink, GithubIcon } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
-import { IProject } from '@/lib/models/Project';
+
+type ProjectCardProps = {
+  _id?: string;
+  title: string;
+  shortDescription?: string;
+  description: string;
+  technologies: string[];
+  tags?: string[];
+  githubUrl?: string;
+  liveUrl?: string;
+  isFeatured?: boolean;
+};
 import TechnologyBadge from './TechnologyBadge';
 import TextBadge from './TextBadge';
 import Link from 'next/link';
@@ -16,7 +27,7 @@ const ProjectCard = ({
   githubUrl,
   liveUrl,
   isFeatured,
-}: IProject) => {
+}: ProjectCardProps) => {
   const [expanded, setExpanded] = useState(false);
 
   const isExpandable = useMemo(() => description && description.length > 300, [description]);

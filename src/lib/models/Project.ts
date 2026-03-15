@@ -27,6 +27,8 @@ const ProjectSchema: Schema = new Schema(
     tags: [{ type: String }],
     technologies: [{ type: Schema.Types.ObjectId, ref: 'Skill' }],
     images: { type: String },
+    isArchived: { type: Boolean, default: false },
+    category: { type: String },
   },
   { timestamps: true }
 );

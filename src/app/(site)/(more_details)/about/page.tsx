@@ -12,7 +12,7 @@ const data = {
 
 const AboutPage = () => {
   return (
-    <>
+    <div>
       <PageHeading title={data.title} subTitle={data.subTitle} />
       <div className="section-spacing mx-auto flex flex-col gap-30">
         <AboutMeSection />
@@ -20,7 +20,7 @@ const AboutPage = () => {
         <ExperienceSection />
         <EducationSection />
       </div>
-    </>
+    </div>
   );
 };
 

@@ -21,9 +21,9 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
   return (
     <div className="relative h-screen w-screen overflow-hidden">
       <Navbar currentPage={currentPage} onNavigate={handleNavigate} />
-      <div className="relative h-full w-full overflow-y-scroll">
+      <div className="h-full w-full overflow-auto ">
         <AnimatedBackground />
-        {children}
+        <div className="relative mt-16 min-h-full md:mt-20">{children}</div>
       </div>
     </div>
   );
