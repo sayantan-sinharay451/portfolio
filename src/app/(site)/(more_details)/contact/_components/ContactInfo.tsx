@@ -54,7 +54,8 @@ export default function ContactInfo() {
               {item.href ? (
                 <a
                   href={item.href}
-                  target="_blank"
+                  target={item.href.startsWith('http') ? '_blank' : undefined}
+                  rel={item.href.startsWith('http') ? 'noreferrer' : undefined}
                   className="hover:text-primary text-base text-gray-400 transition"
                 >
                   {item.value}

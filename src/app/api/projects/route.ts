@@ -3,7 +3,6 @@ import Project from "@/lib/models/Project";
 import { NextResponse } from "next/server";
 import { projectSchema } from "@/lib/validators/projectSchema";
 
-
 export async function GET(req: Request) {
   await connectDB();
 
@@ -23,7 +22,10 @@ export async function GET(req: Request) {
     const MAX_LIMIT = 50;
     if (limit > MAX_LIMIT) limit = MAX_LIMIT;
 
-    const filter: Record<string, any> = {};
+    const filter: {
+      isArchived?: boolean;
+      $or?: Array<{ isArchived: boolean } | { isArchived: { $exists: boolean } }>;
+    } = {};
     if (archivedParam === 'true') {
       filter.isArchived = true;
     } else if (archivedParam === 'false') {
@@ -61,12 +63,10 @@ export async function POST(req: Request) {
   await connectDB();
   const data = await req.json();
 
-  debugger;
-
   const validation = projectSchema.safeParse(data);
 
   if (!validation.success) {
-    return NextResponse.json(validation.error.errors, { status: 400 });
+    return NextResponse.json(validation.error.issues, { status: 400 });
   }
 
   const project = await Project.create(validation.data);
@@ -79,7 +79,7 @@ export async function PUT(req: Request) {
   const validation = projectSchema.safeParse(data);
 
   if (!validation.success) {
-    return NextResponse.json(validation.error.errors, { status: 400 });
+    return NextResponse.json(validation.error.issues, { status: 400 });
   }
 
   const { _id, ...updates } = validation.data;
@@ -87,9 +87,29 @@ export async function PUT(req: Request) {
   return NextResponse.json(project);
 }
 
+export async function PATCH(req: Request) {
+  await connectDB();
+  const url = new URL(req.url);
+  const id = url.searchParams.get('id');
+  const data = await req.json();
+
+  if (!id) {
+    return NextResponse.json({ error: 'Project id is required' }, { status: 400 });
+  }
+
+  const project = await Project.findByIdAndUpdate(id, data, { new: true });
+  return NextResponse.json(project);
+}
+
 export async function DELETE(req: Request) {
   await connectDB();
-  const { id } = await req.json();
+  const url = new URL(req.url);
+  const id = url.searchParams.get('id');
+
+  if (!id) {
+    return NextResponse.json({ error: 'Project id is required' }, { status: 400 });
+  }
+
   await Project.findByIdAndDelete(id);
   return NextResponse.json({ success: true });
 }

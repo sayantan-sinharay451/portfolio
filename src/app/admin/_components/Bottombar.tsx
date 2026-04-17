@@ -4,7 +4,6 @@ import {
   Award,
   Folder,
   LayoutDashboard,
-  User,
   Settings,
 } from 'lucide-react';
 import { usePathname } from 'next/navigation';

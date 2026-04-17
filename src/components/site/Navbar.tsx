@@ -1,7 +1,10 @@
-import { useState } from 'react';
-import { Menu, X, Lock } from 'lucide-react';
+'use client';
+
+import { useEffect, useState } from 'react';
+import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 const navItems = [
   { label: 'Home', value: '' },
@@ -10,13 +13,14 @@ const navItems = [
   { label: 'Contact', value: 'contact' },
 ];
 
-interface NavbarProps {
-  currentPage: string;
-  onNavigate: (page: string) => void;
-}
-
-export function Navbar({ currentPage, onNavigate }: NavbarProps) {
+export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const currentPage = pathname.split('/')[1] || '';
+
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [pathname]);
 
   return (
     <motion.nav
@@ -27,14 +31,14 @@ export function Navbar({ currentPage, onNavigate }: NavbarProps) {
     >
       <div className="container flex h-16 items-center justify-between md:h-20">
         {/* Logo */}
-        <button
-          onClick={() => onNavigate('home')}
+        <Link
+          href="/"
           className="text-foreground focus-visible:ring-ring rounded-md text-xl font-semibold tracking-tight transition-colors focus:outline-none focus-visible:ring-2 md:text-2xl"
         >
           <span>&lt;</span>
           <span className="text-primary mx-1 font-mono">Devfolio</span>
           <span>/&gt;</span>
-        </button>
+        </Link>
 
         {/* Desktop Navigation */}
         <div className="hidden items-center gap-8 md:flex">
@@ -42,7 +46,6 @@ export function Navbar({ currentPage, onNavigate }: NavbarProps) {
             <Link
               href={`/${item.value}`}
               key={item.value}
-              onClick={() => onNavigate(item.value)}
               className={`relative py-2 font-medium transition-all duration-200 ${
                 currentPage === item.value
                   ? 'text-primary'
@@ -83,18 +86,16 @@ export function Navbar({ currentPage, onNavigate }: NavbarProps) {
           >
             <div className="container flex flex-col gap-3 py-6">
               {navItems.map((item) => (
-                <button
+                <Link
+                  href={`/${item.value}`}
                   key={item.value}
-                  onClick={() => {
-                    onNavigate(item.value);
-                    setMobileMenuOpen(false);
-                  }}
+                  onClick={() => setMobileMenuOpen(false)}
                   className={`w-full py-2 text-left font-semibold transition-colors ${
                     currentPage === item.value ? 'text-primary' : 'text-muted hover:text-foreground'
                   }`}
                 >
                   {item.label}
-                </button>
+                </Link>
               ))}
             </div>
           </motion.div>

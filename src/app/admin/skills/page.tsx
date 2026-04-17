@@ -1,12 +1,18 @@
 'use client';
 import { Button } from '@/components/ui/button';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import { PlusCircle } from 'lucide-react';
 import PageHeading from '../_components/PageHeading';
 import SkillCard from '../_components/SkillCard';
 import { useState } from 'react';
 import AdminModal from '../_components/AdminModal';
 import { Input } from '@/components/ui/input';
+
+type SkillCardData = {
+  name: string;
+  category: string;
+  icon: string;
+};
 
 const skillsData = [
   {
@@ -32,18 +38,15 @@ const skillsData = [
 ];
 
 const SkillsPage = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalType, setModalType] = useState<'add' | 'edit' | 'delete'>('add');
-  const [selectedSkill, setSelectedSkill] = useState<any>(null);
+  const [selectedSkill, setSelectedSkill] = useState<SkillCardData | null>(null);
 
-  const openModal = (type: 'add' | 'edit' | 'delete', skill?: any) => {
+  const openModal = (type: 'add' | 'edit' | 'delete', skill?: SkillCardData) => {
     setModalType(type);
-    setSelectedSkill(skill);
-    setIsModalOpen(true);
+    setSelectedSkill(skill ?? null);
   };
 
   const closeModal = () => {
-    setIsModalOpen(false);
     setSelectedSkill(null);
   };
 
@@ -105,7 +108,7 @@ const SkillsPage = () => {
           {modalType === 'delete' && (
             <div className="space-y-4">
               <p className="text-muted-foreground">
-                Are you sure you want to delete the skill "{selectedSkill?.name}"?
+                Are you sure you want to delete the skill &quot;{selectedSkill?.name}&quot;?
               </p>
               <div className="flex justify-end gap-2">
                 <Button variant="ghost" onClick={closeModal}>

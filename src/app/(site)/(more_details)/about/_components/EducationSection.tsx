@@ -24,7 +24,7 @@ const educations: Partial<IEducation>[] = [
 const EducationSection = () => {
   return (
     <section>
-      <SectionHeading heading="Education" />
+      <SectionHeading heading="Education" id="education-section" />
       <div className="space-y-8">
         {educations.map((education, index) => (
           <EducationCard key={index} item={mapEducationToDisplay(education as IEducation)} />

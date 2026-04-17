@@ -1,29 +1,17 @@
-'use client';
 import { Navbar } from '@/components/site/Navbar';
-import { useEffect, useState } from 'react';
 import { AnimatedBackground } from '@/components/site/AnimatedBackground';
-import { usePathname } from 'next/navigation';
+import FooterSection from './_components/FooterSection';
 
 export default function MainLayout({ children }: { children: React.ReactNode }) {
-  const [currentPage, setCurrentPage] = useState('');
-  const pathName = usePathname();
-
-  useEffect(() => {
-    const path = pathName.split('/')[1] || '';
-    setCurrentPage(path);
-  }, [pathName]);
-
-  const handleNavigate = (page: string) => {
-    setCurrentPage(page);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   return (
-    <div className="relative h-screen w-screen overflow-hidden">
-      <Navbar currentPage={currentPage} onNavigate={handleNavigate} />
-      <div className="h-full w-full overflow-auto ">
+    <div className="relative min-h-screen overflow-x-clip">
+      <Navbar />
+      <div className="relative">
         <AnimatedBackground />
-        <div className="relative mt-16 min-h-full md:mt-20">{children}</div>
+        <main className="relative mt-16 min-h-[calc(100svh-4rem)] md:mt-20 md:min-h-[calc(100svh-5rem)]">
+          {children}
+        </main>
+        <FooterSection />
       </div>
     </div>
   );

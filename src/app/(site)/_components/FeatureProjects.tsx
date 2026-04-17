@@ -1,12 +1,10 @@
 'use client';
 import React from 'react';
-import { motion } from 'framer-motion';
 import ProjectCard from '@/components/site/ProjectCard';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import SectionHeading, { SectionHeadingProps } from '@/components/site/SectionHeading';
-import ProjectsGrid from '@/components/site/ProjectsGrid';
 import { projectSeeds } from '@/lib/mock/Project';
 
 const sectionHeadingData: SectionHeadingProps = {

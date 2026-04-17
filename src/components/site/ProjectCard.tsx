@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useMemo, useState } from 'react';
 import { ExternalLink, GithubIcon } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
@@ -16,9 +18,9 @@ type ProjectCardProps = {
 import TechnologyBadge from './TechnologyBadge';
 import TextBadge from './TextBadge';
 import Link from 'next/link';
+import { slugify } from '@/lib/utils/slugify';
 
 const ProjectCard = ({
-  _id,
   title,
   shortDescription,
   description,
@@ -93,7 +95,7 @@ const ProjectCard = ({
         </CardDescription>
         {!isFeatured && (
           <Link
-            href={`/projects/${_id ?? ''}`}
+            href={`/projects/${slugify(title)}`}
             className="hover:!text-primary text-sm font-medium transition hover:!underline"
           >
             View project →

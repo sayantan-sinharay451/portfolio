@@ -2,7 +2,6 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { z } from 'zod';
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -38,10 +37,12 @@ export function ProjectModal({ project, onSuccess }: ProjectModalProps) {
     defaultValues: project || {
       title: '',
       description: '',
-      techStack: [],
+      technologies: [],
       githubUrl: '',
       liveUrl: '',
-      thumbnail: '',
+      blogUrl: '',
+      category: '',
+      imageUrl: '',
     },
   });
 
@@ -102,15 +103,22 @@ export function ProjectModal({ project, onSuccess }: ProjectModalProps) {
             />
             <FormField
               control={form.control}
-              name="techStack"
+              name="technologies"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Tech Stack (comma-separated)</FormLabel>
                   <FormControl>
                     <Input
                       placeholder="React, Next.js, Tailwind CSS"
-                      {...field}
-                      onChange={(e) => field.onChange(e.target.value.split(','))}
+                      value={field.value.join(', ')}
+                      onChange={(e) =>
+                        field.onChange(
+                          e.target.value
+                            .split(',')
+                            .map((item) => item.trim())
+                            .filter(Boolean)
+                        )
+                      }
                     />
                   </FormControl>
                   <FormMessage />

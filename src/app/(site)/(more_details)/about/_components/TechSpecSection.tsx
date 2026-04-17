@@ -2,53 +2,50 @@ import React from 'react';
 import SectionHeading from '../../../../../components/site/SectionHeading';
 import { ISkill } from '@/lib/models/Skills';
 import SkillCard from './SkillCard';
-import * as icons from 'simple-icons';
-import Image from 'next/image';
-import { Icon } from '@iconify/react';
-import SkillIcon from '@/components/site/SkillIcon';
+import { SkillCategory } from '@/lib/models/Skills';
 
-const skills: Partial<ISkill>[] = [
+const skills: ISkill[] = [
   {
     name: 'JavaScript',
     proficiency: 'Expert',
-    category: 'Frontend',
+    category: SkillCategory.Language,
   },
   {
     name: 'TypeScript',
     proficiency: 'Advanced',
-    category: 'Frontend',
+    category: SkillCategory.Language,
   },
   {
     name: 'React',
     proficiency: 'Expert',
-    category: 'Frontend',
+    category: SkillCategory.Frontend,
   },
   {
     name: 'Next.js',
     proficiency: 'Advanced',
-    category: 'Frontend',
+    category: SkillCategory.Frontend,
   },
   {
     name: 'Node.js',
     proficiency: 'Intermediate',
-    category: 'Backend',
+    category: SkillCategory.Backend,
   },
   {
     name: 'Express',
     proficiency: 'Intermediate',
-    category: 'Backend',
+    category: SkillCategory.Backend,
   },
   {
     name: 'MongoDB',
     proficiency: 'Intermediate',
-    category: 'Database',
+    category: SkillCategory.Database,
   },
   {
     name: 'PostgreSQL',
     proficiency: 'Beginner',
-    category: 'Database',
+    category: SkillCategory.Database,
   },
-];
+].map((skill) => skill as ISkill);
 
 const TechSpecSection = () => {
   const skillsByCategory = skills.reduce(
@@ -64,7 +61,7 @@ const TechSpecSection = () => {
   );
   return (
     <section>
-      <SectionHeading heading="My Tech Stack" />
+      <SectionHeading heading="My Tech Stack" id="tech-spec-section" />
       <div className="space-y-12">
         {Object.entries(skillsByCategory).map(([category, skills]) => (
           <div key={category}>

@@ -4,10 +4,11 @@ import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import AnimatedGradientText from '@/components/ui/animated-gradient-text';
+import Link from 'next/link';
 
 const HeroSection = () => {
   return (
-    <section className="section-spacing container flex min-h-[100vh] flex-grow items-center">
+    <section className="container flex min-h-[calc(100svh-4rem)] items-center py-16 md:min-h-[calc(100svh-5rem)] md:py-24">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -31,7 +32,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="font-heading text-transparent-gradient !text-6xl leading-[1.1] font-bold tracking-tight sm:!text-6xl md:!text-7xl lg:!text-8xl"
+            className="font-heading text-transparent-gradient text-5xl leading-[1.02] font-bold tracking-tight sm:text-6xl md:text-7xl lg:text-8xl"
           >
             Sayantan Sinharay
           </motion.h1>
@@ -45,7 +46,7 @@ const HeroSection = () => {
             <AnimatedGradientText
               duration={4}
               gradientStops="from-primary-light to-accent"
-              className="font-body bg-gradient-to-r !text-2xl leading-snug font-semibold text-transparent sm:!text-2xl md:!text-3xl lg:!text-5xl"
+              className="font-body bg-gradient-to-r text-2xl leading-snug font-semibold text-transparent md:text-3xl lg:text-5xl"
             >
               Building Digital Experiences
               <br />
@@ -69,21 +70,27 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.6 }}
-            className="flex w-full flex-col gap-4 sm:w-[70%] sm:flex-row sm:gap-8 md:w-[55%] lg:w-[45%]"
+            className="flex w-full flex-col gap-4 sm:w-[70%] sm:flex-row sm:gap-6 md:w-[55%] lg:w-[45%]"
           >
             <Button
+              asChild
               size="lg"
               className="bg-primary-container text-primary-light border-primary-light hover:bg-primary hover:text-primary-container w-full"
             >
-              View Projects <ArrowUpRight className="ml-1 size-4" />
+              <Link href="/projects">
+                View Projects <ArrowUpRight className="ml-1 size-4" />
+              </Link>
             </Button>
 
             <Button
+              asChild
               variant="outline"
               size="lg"
               className="text-primary-foreground border-primary-light hover:text-primary-light hover:border-primary-container w-full border-2"
             >
-              Get In Touch <ArrowRight className="ml-1 size-4" />
+              <Link href="/contact">
+                Get In Touch <ArrowRight className="ml-1 size-4" />
+              </Link>
             </Button>
           </motion.div>
         </div>

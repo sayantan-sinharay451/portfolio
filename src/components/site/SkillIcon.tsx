@@ -72,7 +72,7 @@ const SkillIcon: React.FC<SkillIconProps> = ({ name, size = 48, variant = 'color
   const devIconKey = normalizeDevIconName(name);
 
   // Simple Icons instance
-  const simpleIcon = (simpleIcons as any)[simpleKey];
+  const simpleIcon = (simpleIcons as Record<string, { svg?: string }>)[simpleKey];
 
   // Fallback UI
   const fallback = (

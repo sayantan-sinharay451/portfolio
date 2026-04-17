@@ -18,7 +18,7 @@ import { MultiSelect } from '@/components/ui/multiselect';
 
 interface ProjectFormProps {
   project?: ProjectFormValues | null;
-  onSubmit: () => void;
+  onSubmit: (values: ProjectFormValues) => void | Promise<void>;
 }
 
 const ProjectFrom: React.FC<ProjectFormProps> = ({ project, onSubmit }) => {

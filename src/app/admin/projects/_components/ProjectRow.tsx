@@ -55,7 +55,7 @@ const ProjectRow: React.FC<ProjectRowProps> = ({ project, onEdit }) => {
       } else {
         toast.error('Failed to delete project');
       }
-    } catch (error) {
+    } catch {
       toast.error('An error occurred while deleting the project');
     } finally {
       setIsDeleting(false);
@@ -79,7 +79,7 @@ const ProjectRow: React.FC<ProjectRowProps> = ({ project, onEdit }) => {
       } else {
         toast.error('Failed to archive project');
       }
-    } catch (error) {
+    } catch {
       toast.error('An error occurred while archiving the project');
     } finally {
       setIsArchiving(false);
@@ -93,9 +93,11 @@ const ProjectRow: React.FC<ProjectRowProps> = ({ project, onEdit }) => {
           <div className="flex-grow">
             <div className="flex items-center gap-4">
               <h3 className="text-primary text-lg font-semibold">{project.title}</h3>
-              <Badge variant="outline" className="h-fit">
-                {project.category}
-              </Badge>
+              {project.category && (
+                <Badge variant="outline" className="h-fit">
+                  {project.category}
+                </Badge>
+              )}
             </div>
             <p className="text-muted-foreground mt-2 text-sm transition-all duration-300">
               {isExpanded ? project.description : shortDescription}

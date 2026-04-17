@@ -17,11 +17,15 @@ type Pagination = {
   totalPages: number;
 };
 
+type ProjectRecord = IProject & {
+  _id: string;
+};
+
 const PAGE_LIMIT = 10;
 
 const ProjectsPage = () => {
-  const [activeProjects, setActiveProjects] = useState<IProject[]>([]);
-  const [archivedProjects, setArchivedProjects] = useState<IProject[]>([]);
+  const [activeProjects, setActiveProjects] = useState<ProjectRecord[]>([]);
+  const [archivedProjects, setArchivedProjects] = useState<ProjectRecord[]>([]);
 
   const [activePage, setActivePage] = useState(1);
   const [archivedPage, setArchivedPage] = useState(1);
@@ -149,7 +153,7 @@ const ProjectsPage = () => {
           title="Add Project"
           description="Create a new project"
         >
-          <ProjectForm onSubmit={(values) => console.log(values)} />
+          <ProjectForm onSubmit={async (values) => console.log(values)} />
         </AdminModal>
       </div>
 
@@ -169,7 +173,7 @@ const ProjectsPage = () => {
                 ))
               : activeProjects.length > 0
                 ? activeProjects.map((project) => (
-                    <ProjectRow key={(project as any)._id} project={project as any} />
+                    <ProjectRow key={project._id} project={project} onEdit={(editedProject) => console.log(editedProject)} />
                   ))
                 : !activeLoading && (
                     <p className="text-muted-foreground mt-4">No active projects yet.</p>
@@ -197,7 +201,7 @@ const ProjectsPage = () => {
                 ))
               : archivedProjects.length > 0
                 ? archivedProjects.map((project) => (
-                    <ProjectRow key={(project as any)._id} project={project as any} />
+                    <ProjectRow key={project._id} project={project} onEdit={(editedProject) => console.log(editedProject)} />
                   ))
                 : !archivedLoading && (
                     <p className="text-muted-foreground mt-4">No archived projects.</p>

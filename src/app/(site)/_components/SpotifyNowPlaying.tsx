@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { SpotifyIcon as Spotify } from "../../../../public/icons/SpotifyIcon";
 
 const SpotifyNowPlaying = () => {
   return (
