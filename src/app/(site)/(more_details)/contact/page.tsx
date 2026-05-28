@@ -13,8 +13,7 @@ const ContactPage = () => {
   return (
     <>
       <PageHeading {...pageHeadingData} />
-
-      <div className="grid grid-cols-1 gap-16 md:grid-cols-2">
+      <div className="section-spacing grid grid-cols-1 gap-6 md:grid-cols-2">
         <ContactForm />
         <ContactInfo />
       </div>

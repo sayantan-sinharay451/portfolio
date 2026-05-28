@@ -12,6 +12,12 @@ const blobColors = [
   'rgba(100, 224, 255, 0.18)',
 ];
 
+/** Seeded pseudo-random number generator for deterministic values across server & client */
+function seededRandom(seed: number): number {
+  const x = Math.sin(seed) * 10000;
+  return x - Math.floor(x);
+}
+
 type BlobMotion = {
   color: string;
   initial: { x: string; y: string; scale: number };
@@ -21,9 +27,7 @@ type BlobMotion = {
 };
 
 const Blob = ({ config, reducedMotion }: { config: BlobMotion; reducedMotion: boolean }) => {
-  const animate = reducedMotion
-    ? { opacity: [0.3, 0.45, 0.3] }
-    : config.animate;
+  const animate = reducedMotion ? { opacity: [0.3, 0.45, 0.3] } : config.animate;
   const transition = reducedMotion
     ? { duration: 8, repeat: Infinity, ease: 'easeInOut' as const }
     : {
@@ -54,30 +58,31 @@ export function AnimatedBackground() {
   const blobs = useMemo<BlobMotion[]>(
     () =>
       blobColors.map((color, index) => {
-        const random = (min: number, max: number) => Math.random() * (max - min) + min;
+        const random = (min: number, max: number, seed: number) =>
+          seededRandom(seed) * (max - min) + min;
 
         return {
           color,
           initial: {
-            x: `${random(-38, 38)}vw`,
-            y: `${random(-36, 36)}vh`,
-            scale: random(0.9, 1.15),
+            x: `${random(-38, 38, index * 13 + 1)}vw`,
+            y: `${random(-36, 36, index * 13 + 2)}vh`,
+            scale: random(0.9, 1.15, index * 13 + 3),
           },
           animate: {
             x: [
-              `${random(-38, 38)}vw`,
-              `${random(-24, 24)}vw`,
-              `${random(-38, 38)}vw`,
+              `${random(-38, 38, index * 13 + 4)}vw`,
+              `${random(-24, 24, index * 13 + 5)}vw`,
+              `${random(-38, 38, index * 13 + 6)}vw`,
             ],
             y: [
-              `${random(-34, 34)}vh`,
-              `${random(-18, 18)}vh`,
-              `${random(-34, 34)}vh`,
+              `${random(-34, 34, index * 13 + 7)}vh`,
+              `${random(-18, 18, index * 13 + 8)}vh`,
+              `${random(-34, 34, index * 13 + 9)}vh`,
             ],
-            scale: [1, random(1.05, 1.2), 1],
-            rotate: [0, random(-18, 18), 0],
+            scale: [1, random(1.05, 1.2, index * 13 + 10), 1],
+            rotate: [0, random(-18, 18, index * 13 + 11), 0],
           },
-          duration: random(18, 26),
+          duration: random(18, 26, index * 13 + 12),
           delay: index * 0.35,
         };
       }),

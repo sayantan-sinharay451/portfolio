@@ -13,13 +13,9 @@ const PageHeading: React.FC<PageHeadingProps> = ({ title, subTitle }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="section-spacing"
     >
-      <div className="relative">
-        {/* <div className="bg-primary/20 pointer-events-none absolute top-[50%] left-[50%] h-80 w-80 translate-[50%] transform rounded-full blur-3xl" /> */}
-        <h1 className="text-transparent-gradient w-fit">{title}</h1>
-        <p className="max-w-3xl text-lg text-[var(--color-text-secondary)]">{subTitle}</p>
-      </div>
+      <h1 className="text-transparent-gradient w-fit">{title}</h1>
+      <p className="max-w-3xl text-lg text-[var(--color-text-secondary)]">{subTitle}</p>
     </motion.div>
   );
 };
