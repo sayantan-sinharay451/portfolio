@@ -4,16 +4,28 @@ import { NextResponse } from "next/server";
 import { projectSchema } from "@/lib/validators/projectSchema";
 
 export async function GET(req: Request) {
-  await connectDB();
+  const db = await connectDB();
+
+  if (!db) {
+    return NextResponse.json({
+      data: [],
+      pagination: {
+        page: 1,
+        limit: 10,
+        totalItems: 0,
+        totalPages: 1,
+      },
+    });
+  }
 
   try {
     const url = new URL(req.url);
-    const pageParam = url.searchParams.get('page');
-    const limitParam = url.searchParams.get('limit');
-    const archivedParam = url.searchParams.get('archived');
+    const pageParam = url.searchParams.get("page");
+    const limitParam = url.searchParams.get("limit");
+    const archivedParam = url.searchParams.get("archived");
 
-    let page = parseInt(pageParam ?? '1', 10);
-    let limit = parseInt(limitParam ?? '10', 10);
+    let page = parseInt(pageParam ?? "1", 10);
+    let limit = parseInt(limitParam ?? "10", 10);
 
     if (Number.isNaN(page) || page < 1) page = 1;
     if (Number.isNaN(limit) || limit < 1) limit = 10;
@@ -26,9 +38,9 @@ export async function GET(req: Request) {
       isArchived?: boolean;
       $or?: Array<{ isArchived: boolean } | { isArchived: { $exists: boolean } }>;
     } = {};
-    if (archivedParam === 'true') {
+    if (archivedParam === "true") {
       filter.isArchived = true;
-    } else if (archivedParam === 'false') {
+    } else if (archivedParam === "false") {
       // treat missing isArchived as false for backward compatibility
       filter.$or = [{ isArchived: false }, { isArchived: { $exists: false } }];
     }
@@ -54,13 +66,16 @@ export async function GET(req: Request) {
       },
     });
   } catch (err) {
-    console.error('Failed to fetch projects', err);
-    return NextResponse.json({ error: 'Failed to fetch projects' }, { status: 500 });
+    console.error("Failed to fetch projects", err);
+    return NextResponse.json({ error: "Failed to fetch projects" }, { status: 500 });
   }
 }
 
 export async function POST(req: Request) {
-  await connectDB();
+  const db = await connectDB();
+  if (!db) {
+    return NextResponse.json({ error: "Database not connected" }, { status: 503 });
+  }
   const data = await req.json();
 
   const validation = projectSchema.safeParse(data);
@@ -74,7 +89,10 @@ export async function POST(req: Request) {
 }
 
 export async function PUT(req: Request) {
-  await connectDB();
+  const db = await connectDB();
+  if (!db) {
+    return NextResponse.json({ error: "Database not connected" }, { status: 503 });
+  }
   const data = await req.json();
   const validation = projectSchema.safeParse(data);
 
@@ -88,13 +106,16 @@ export async function PUT(req: Request) {
 }
 
 export async function PATCH(req: Request) {
-  await connectDB();
+  const db = await connectDB();
+  if (!db) {
+    return NextResponse.json({ error: "Database not connected" }, { status: 503 });
+  }
   const url = new URL(req.url);
-  const id = url.searchParams.get('id');
+  const id = url.searchParams.get("id");
   const data = await req.json();
 
   if (!id) {
-    return NextResponse.json({ error: 'Project id is required' }, { status: 400 });
+    return NextResponse.json({ error: "Project id is required" }, { status: 400 });
   }
 
   const project = await Project.findByIdAndUpdate(id, data, { new: true });
@@ -102,12 +123,15 @@ export async function PATCH(req: Request) {
 }
 
 export async function DELETE(req: Request) {
-  await connectDB();
+  const db = await connectDB();
+  if (!db) {
+    return NextResponse.json({ error: "Database not connected" }, { status: 503 });
+  }
   const url = new URL(req.url);
-  const id = url.searchParams.get('id');
+  const id = url.searchParams.get("id");
 
   if (!id) {
-    return NextResponse.json({ error: 'Project id is required' }, { status: 400 });
+    return NextResponse.json({ error: "Project id is required" }, { status: 400 });
   }
 
   await Project.findByIdAndDelete(id);
