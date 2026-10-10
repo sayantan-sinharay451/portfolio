@@ -29,6 +29,8 @@ const ProjectsPage = () => {
 
   const [activePage, setActivePage] = useState(1);
   const [archivedPage, setArchivedPage] = useState(1);
+  const [activeRequestPage, setActiveRequestPage] = useState(activePage);
+  const [archivedRequestPage, setArchivedRequestPage] = useState(archivedPage);
 
   const [activePagination, setActivePagination] = useState<Pagination>({
     page: 1,
@@ -44,8 +46,8 @@ const ProjectsPage = () => {
     totalPages: 1,
   });
 
-  const [activeLoading, setActiveLoading] = useState(false);
-  const [archivedLoading, setArchivedLoading] = useState(false);
+  const [activeLoading, setActiveLoading] = useState(true);
+  const [archivedLoading, setArchivedLoading] = useState(true);
 
   const [activeError, setActiveError] = useState<string | null>(null);
   const [archivedError, setArchivedError] = useState<string | null>(null);
@@ -54,14 +56,23 @@ const ProjectsPage = () => {
   const activeControllerRef = useRef<AbortController | null>(null);
   const archivedControllerRef = useRef<AbortController | null>(null);
 
+  if (activePage !== activeRequestPage) {
+    setActiveRequestPage(activePage);
+    setActiveLoading(true);
+    setActiveError(null);
+  }
+
+  if (archivedPage !== archivedRequestPage) {
+    setArchivedRequestPage(archivedPage);
+    setArchivedLoading(true);
+    setArchivedError(null);
+  }
+
   useEffect(() => {
     // fetch active projects
     const controller = new AbortController();
     activeControllerRef.current?.abort();
     activeControllerRef.current = controller;
-
-    setActiveLoading(true);
-    setActiveError(null);
 
     fetch(`/api/projects?page=${activePage}&limit=${PAGE_LIMIT}&archived=false`, {
       signal: controller.signal,
@@ -101,9 +112,6 @@ const ProjectsPage = () => {
     const controller = new AbortController();
     archivedControllerRef.current?.abort();
     archivedControllerRef.current = controller;
-
-    setArchivedLoading(true);
-    setArchivedError(null);
 
     fetch(`/api/projects?page=${archivedPage}&limit=${PAGE_LIMIT}&archived=true`, {
       signal: controller.signal,

@@ -12,7 +12,20 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { AnimatePresence, motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+
+function MotionWrapper({ children }: { children: React.ReactNode }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: -15 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 15 }}
+      transition={{ duration: 0.22 }}
+    >
+      {children}
+    </motion.div>
+  );
+}
 
 interface AdminModalProps {
   title?: string;
@@ -46,30 +59,20 @@ export default function AdminModal({
   disableDefaultFooter = false,
 }: AdminModalProps) {
   const [open, setOpen] = useState(false);
+  const [prevIsOpenExternal, setPrevIsOpenExternal] = useState(isOpenExternal);
 
-  /** Sync external open state */
-  useEffect(() => {
+  if (isOpenExternal !== prevIsOpenExternal) {
+    setPrevIsOpenExternal(isOpenExternal);
     if (typeof isOpenExternal === 'boolean') {
       setOpen(isOpenExternal);
     }
-  }, [isOpenExternal]);
+  }
 
   /** Handle close */
   const handleOpenChange = (state: boolean) => {
     setOpen(state);
     if (!state && onCloseExternal) onCloseExternal();
   };
-
-  const MotionWrapper = ({ children }: { children: React.ReactNode }) => (
-    <motion.div
-      initial={{ opacity: 0, y: -15 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: 15 }}
-      transition={{ duration: 0.22 }}
-    >
-      {children}
-    </motion.div>
-  );
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
