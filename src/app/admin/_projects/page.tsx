@@ -19,7 +19,22 @@ export default function ProjectsPage() {
   };
 
   useEffect(() => {
-    fetchProjects();
+    let cancelled = false;
+
+    fetch('/api/projects')
+      .then((response) => response.json())
+      .then((data) => {
+        if (cancelled) return;
+        setProjects(data);
+        setLoading(false);
+      })
+      .catch(() => {
+        if (!cancelled) setLoading(false);
+      });
+
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   return (

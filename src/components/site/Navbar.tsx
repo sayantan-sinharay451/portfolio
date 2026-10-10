@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import Link from 'next/link';
@@ -16,11 +16,13 @@ const navItems = [
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
+  const [menuPathname, setMenuPathname] = useState(pathname);
   const currentPage = pathname.split('/')[1] || '';
 
-  useEffect(() => {
+  if (pathname !== menuPathname) {
+    setMenuPathname(pathname);
     setMobileMenuOpen(false);
-  }, [pathname]);
+  }
 
   return (
     <motion.nav
